@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./Sidebar.css";
+import "./styles/Sidebar.css";
 
 const Sidebar = () => {
   return (
@@ -10,21 +10,13 @@ const Sidebar = () => {
       </div>
       <nav>
         <ul>
-          <li>
-            <NavLink to="/admin-dashboard" end>
-              <i className="icon-dashboard"></i> Dashboard
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/admin-dashboard/users">
-              <i className="icon-users"></i> Manage Users
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/admin-dashboard/content">
-              <i className="icon-content"></i> Manage Content
-            </NavLink>
-          </li>
+          <li><NavLink to="/admin-dashboard" end>Dashboard</NavLink></li>
+          <li><NavLink to="/admin-dashboard/users">Manage Users</NavLink></li>
+          <li><NavLink to="/admin-dashboard/content">Manage Content</NavLink></li>
+          <li><NavLink to="/admin-dashboard/bus-management">Bus Management</NavLink></li>
+          <li><NavLink to="/admin-dashboard/emergency-reports">Emergency Reports</NavLink></li>
+          <li><NavLink to="/admin-dashboard/revenue">Revenue Overview</NavLink></li>
+          <li><NavLink to="/admin-dashboard/bus-rounds">Bus Rounds</NavLink></li>
         </ul>
       </nav>
     </aside>
