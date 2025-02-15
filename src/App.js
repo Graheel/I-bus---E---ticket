@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar"; // Importing Navbar
 import HomePage from "./pages/HomePage";
 import BookTicket from "./pages/BookTicket";
 import AboutPage from "./pages/AboutPage";
@@ -13,6 +13,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import UsersPage from "./admin/UsersPage";
 import ContentPage from "./admin/ContentPage";
 import AuthContainer from "./components/AuthContainer";
+import DriverDashboard from "./pages/DriverDashboard"; // Import DriverDashboard
 
 import "./App.css";
 
@@ -23,7 +24,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {showNavbar && <Navbar />}
+        {/* Conditionally render Navbar based on route */}
+        {showNavbar && window.location.pathname !== "/driver-dashboard" && <Navbar />}
+
         <Routes>
           <Route
             path="/"
@@ -81,7 +84,17 @@ function App() {
               </ErrorBoundary>
             }
           />
+          {/* Driver Dashboard route */}
+          <Route
+            path="/driver-dashboard"
+            element={
+              <ErrorBoundary>
+                <DriverDashboard />
+              </ErrorBoundary>
+            }
+          />
         </Routes>
+
         <Footer />
       </div>
     </Router>

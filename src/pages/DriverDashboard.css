@@ -1,0 +1,125 @@
+/* General Driver Dashboard Styling */
+.driver-dashboard {
+    padding: 30px;
+    text-align: center;
+    background: linear-gradient(to bottom, #f7f9fc, #dce1e7);
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  /* Heading Style */
+  .driver-header h1 {
+    color: #00203F;
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  
+  /* Form Section Styling */
+  .form-section {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+  
+  .form-section h2 {
+    color: #00203F;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Form Inputs Styling */
+  .form-section input,
+  .form-section textarea {
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 450px;
+    outline: none;
+    transition: border 0.3s ease;
+  }
+  
+  .form-section input:focus,
+  .form-section textarea:focus {
+    border: 1px solid #007bff;
+  }
+  
+  /* Buttons Styling */
+  .start-route-btn,
+  .end-route-btn,
+  .emergency-btn,
+  .save-details-btn,
+  .form-section button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .start-route-btn:hover,
+  .end-route-btn:hover,
+  .emergency-btn:hover,
+  .save-details-btn:hover,
+  .form-section button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  /* Disabled Button */
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  /* Input File Styling */
+  input[type="file"] {
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 450px;
+  }
+  
+  /* Card Style for Form Section */
+  .form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .form-section input,
+    .form-section textarea {
+      width: 100%;
+      max-width: 90%;
+    }
+  
+    .start-route-btn,
+    .end-route-btn,
+    .emergency-btn,
+    .save-details-btn {
+      width: 100%;
+    }
+  }
+  
