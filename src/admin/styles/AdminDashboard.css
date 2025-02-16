@@ -1,7 +1,4 @@
 /* AdminDashboard.css */
-.admin-dashboard {
-    /* Removed display: flex since we no longer have a sidebar */
-  }
   
   .dashboard-content {
     padding: 20px;
@@ -36,13 +33,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: #00203F;
     padding: 10px;
     border-radius: 10px;
   }
   
   .admin-nav a {
-    color: #00203F;
+    color: white;
     text-decoration: none;
     padding: 12px 20px;
     margin: 5px;
