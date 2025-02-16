@@ -1,29 +1,45 @@
-import React from "react";
+// BusRoundsTracking.js
+import React, { useState, useEffect } from "react";
 import "./styles/BusRoundsTracking.css";
 
 const BusRoundsTracking = () => {
-  const busRounds = [
-    { busNumber: "23A", completedRounds: 5, startTime: "07:45 AM", status: "On Time" },
-    { busNumber: "12B", completedRounds: 3, startTime: "08:15 AM", status: "Late" },
-  ];
+  const [rounds, setRounds] = useState([]);
+
+  useEffect(() => {
+    // Fetch rounds data from backend or use dummy data
+    const dummyRounds = [
+      {
+        id: 1,
+        busNumber: "BUS-001",
+        driver: "John Doe",
+        roundsCompleted: 5,
+        startTime: "08:00 AM",
+        status: "On Time",
+      },
+      // Add more rounds as needed
+    ];
+    setRounds(dummyRounds);
+  }, []);
 
   return (
     <div className="bus-rounds-tracking">
-      <h2>Bus Rounds & Driver Timings</h2>
+      <h2>Bus Rounds Tracking</h2>
       <table>
         <thead>
           <tr>
-            <th>Bus No</th>
+            <th>Bus Number</th>
+            <th>Driver</th>
             <th>Rounds Completed</th>
-            <th>Driver Start Time</th>
+            <th>Start Time</th>
             <th>Status</th>
           </tr>
         </thead>
         <tbody>
-          {busRounds.map((round, index) => (
-            <tr key={index}>
+          {rounds.map((round) => (
+            <tr key={round.id}>
               <td>{round.busNumber}</td>
-              <td>{round.completedRounds}</td>
+              <td>{round.driver}</td>
+              <td>{round.roundsCompleted}</td>
               <td>{round.startTime}</td>
               <td>{round.status}</td>
             </tr>

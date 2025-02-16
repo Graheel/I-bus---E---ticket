@@ -1,0 +1,54 @@
+/* BusItem.css */
+.bus-item {
+    background: #f7f9fc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bus-item p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .bus-item strong {
+    color: #00203F;
+  }
+  
+  .bus-item input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .bus-item button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .bus-item button:first-of-type {
+    background-color: #4CAF50; /* Green */
+    color: #fff;
+  }
+  
+  .bus-item button:last-of-type {
+    background-color: #f44336; /* Red */
+    color: #fff;
+  }
+  
+  .bus-item button:hover:first-of-type {
+    background-color: #45a049;
+  }
+  
+  .bus-item button:hover:last-of-type {
+    background-color: #e53935;
+  }
+  

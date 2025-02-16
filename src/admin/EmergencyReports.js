@@ -1,10 +1,24 @@
-import React from "react";
+// EmergencyReports.js
+import React, { useState, useEffect } from "react";
 import "./styles/EmergencyReports.css";
 
 const EmergencyReports = () => {
-  const reports = [
-    { driver: "John Doe", busNumber: "23A", issue: "Brake Failure", time: "10:30 AM" },
-  ];
+  const [reports, setReports] = useState([]);
+
+  useEffect(() => {
+    // Fetch emergency reports from backend or use dummy data
+    const dummyReports = [
+      {
+        id: 1,
+        driver: "John Doe",
+        busNumber: "BUS-001",
+        issue: "Engine malfunction",
+        timeReported: "10:00 AM",
+      },
+      // Add more reports as needed
+    ];
+    setReports(dummyReports);
+  }, []);
 
   return (
     <div className="emergency-reports">
@@ -12,19 +26,19 @@ const EmergencyReports = () => {
       <table>
         <thead>
           <tr>
-            <th>Driver Name</th>
-            <th>Bus No</th>
+            <th>Driver</th>
+            <th>Bus Number</th>
             <th>Issue</th>
-            <th>Reported At</th>
+            <th>Time Reported</th>
           </tr>
         </thead>
         <tbody>
-          {reports.map((report, index) => (
-            <tr key={index}>
+          {reports.map((report) => (
+            <tr key={report.id}>
               <td>{report.driver}</td>
               <td>{report.busNumber}</td>
               <td>{report.issue}</td>
-              <td>{report.time}</td>
+              <td>{report.timeReported}</td>
             </tr>
           ))}
         </tbody>

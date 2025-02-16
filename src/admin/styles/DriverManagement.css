@@ -1,17 +1,17 @@
-/* BusManagement.css */
-.bus-management {
+/* DriverManagement.css */
+.driver-management {
     padding: 20px;
   }
   
-  .bus-management h2 {
+  .driver-management h2 {
     color: #00203F;
     font-size: 2rem;
     margin-bottom: 20px;
     text-align: center;
   }
   
-  .bus-management .bus-list,
-  .bus-management .bus-form {
+  .driver-management .driver-list,
+  .driver-management .driver-form {
     max-width: 800px;
     margin: 0 auto;
   }

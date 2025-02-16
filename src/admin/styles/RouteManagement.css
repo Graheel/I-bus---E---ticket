@@ -1,17 +1,17 @@
-/* BusManagement.css */
-.bus-management {
+/* RouteManagement.css */
+.route-management {
     padding: 20px;
   }
   
-  .bus-management h2 {
+  .route-management h2 {
     color: #00203F;
     font-size: 2rem;
     margin-bottom: 20px;
     text-align: center;
   }
   
-  .bus-management .bus-list,
-  .bus-management .bus-form {
+  .route-management .route-list,
+  .route-management .route-form {
     max-width: 800px;
     margin: 0 auto;
   }

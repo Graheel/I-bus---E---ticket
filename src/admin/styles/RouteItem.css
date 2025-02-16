@@ -1,0 +1,54 @@
+/* RouteItem.css */
+.route-item {
+    background: #f7f9fc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .route-item p {
+    margin: 5px 0;
+    color: #333;
+  }
+  
+  .route-item strong {
+    color: #00203F;
+  }
+  
+  .route-item input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .route-item button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .route-item button:first-of-type {
+    background-color: #4CAF50; /* Green */
+    color: #fff;
+  }
+  
+  .route-item button:last-of-type {
+    background-color: #f44336; /* Red */
+    color: #fff;
+  }
+  
+  .route-item button:hover:first-of-type {
+    background-color: #45a049;
+  }
+  
+  .route-item button:hover:last-of-type {
+    background-color: #e53935;
+  }
+  

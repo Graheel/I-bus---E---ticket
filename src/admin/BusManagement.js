@@ -1,49 +1,45 @@
-import React, { useState } from "react";
+// BusManagement.js
+import React, { useState, useEffect } from "react";
+import BusForm from "./BusForm";
+import BusList from "./BusList";
 import "./styles/BusManagement.css";
 
 const BusManagement = () => {
   const [buses, setBuses] = useState([]);
-  const [newBus, setNewBus] = useState({ number: "", route: "", driver: "", conductor: "" });
 
-  const handleInputChange = (e) => {
-    setNewBus({ ...newBus, [e.target.name]: e.target.value });
+  useEffect(() => {
+    // Fetch buses from backend or use dummy data
+    const dummyBuses = [
+      {
+        id: 1,
+        uniqueNumber: "BUS-001",
+        route: "Route A",
+        driver: "John Doe",
+        conductor: "Jane Smith",
+        timings: "08:00 AM - 05:00 PM",
+      },
+      // Add more buses as needed
+    ];
+    setBuses(dummyBuses);
+  }, []);
+
+  const addBus = (bus) => {
+    setBuses([...buses, { ...bus, id: Date.now() }]);
   };
 
-  const addBus = () => {
-    setBuses([...buses, { ...newBus, id: buses.length + 1 }]);
-    setNewBus({ number: "", route: "", driver: "", conductor: "" });
+  const updateBus = (updatedBus) => {
+    setBuses(buses.map((bus) => (bus.id === updatedBus.id ? updatedBus : bus)));
+  };
+
+  const deleteBus = (id) => {
+    setBuses(buses.filter((bus) => bus.id !== id));
   };
 
   return (
     <div className="bus-management">
-      <h2>Manage Buses & Routes</h2>
-      <div className="bus-form">
-        <input type="text" name="number" placeholder="Bus Number" value={newBus.number} onChange={handleInputChange} />
-        <input type="text" name="route" placeholder="Route" value={newBus.route} onChange={handleInputChange} />
-        <input type="text" name="driver" placeholder="Driver Name" value={newBus.driver} onChange={handleInputChange} />
-        <input type="text" name="conductor" placeholder="Conductor Name" value={newBus.conductor} onChange={handleInputChange} />
-        <button onClick={addBus}>Add Bus</button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Bus No</th>
-            <th>Route</th>
-            <th>Driver</th>
-            <th>Conductor</th>
-          </tr>
-        </thead>
-        <tbody>
-          {buses.map((bus) => (
-            <tr key={bus.id}>
-              <td>{bus.number}</td>
-              <td>{bus.route}</td>
-              <td>{bus.driver}</td>
-              <td>{bus.conductor}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h2>Bus Management</h2>
+      <BusForm addBus={addBus} />
+      <BusList buses={buses} updateBus={updateBus} deleteBus={deleteBus} />
     </div>
   );
 };

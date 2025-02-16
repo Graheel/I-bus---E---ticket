@@ -1,13 +1,22 @@
-import React from "react";
+// RevenueOverview.js
+import React, { useState, useEffect } from "react";
 import "./styles/RevenueOverview.css";
 
 const RevenueOverview = () => {
-  const revenue = 12500;
+  const [totalRevenue, setTotalRevenue] = useState(0);
+
+  useEffect(() => {
+    // Fetch revenue data from backend or use dummy data
+    const dummyRevenue = 5000; // Example amount
+    setTotalRevenue(dummyRevenue);
+  }, []);
 
   return (
     <div className="revenue-overview">
-      <h2>Total Daily Revenue</h2>
-      <p className="revenue-amount">${revenue}</p>
+      <h2>Revenue Overview</h2>
+      <p>
+        <strong>Total Revenue Generated Today:</strong> ${totalRevenue}
+      </p>
     </div>
   );
 };

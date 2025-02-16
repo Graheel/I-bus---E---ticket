@@ -1,25 +1,63 @@
+/* AdminDashboard.css */
 .admin-dashboard {
-    display: flex;
-    height: 100vh;
+    /* Removed display: flex since we no longer have a sidebar */
   }
   
   .dashboard-content {
-    flex: 1;
     padding: 20px;
-    background: #f4f7fc;
+    position: relative;
+    /* Optionally, adjust the width if needed */
+    width: 100%;
   }
   
   .exit-btn {
-    background-color: #ff4d4d;
-    color: white;
-    padding: 10px 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    background-color: #00203F; /* Sailor Blue */
+    color: #ADEFD1;            /* Mint */
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
   }
   
   .exit-btn:hover {
-    background-color: #ff1a1a;
+    background-color: #ADEFD1;
+    color: #00203F;
+    transform: scale(1.05);
+  }
+  
+  /* Styles for the navigation menu */
+  .admin-nav {
+    margin: 80px 0 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .admin-nav a {
+    color: #00203F;
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .admin-nav a:hover {
+    background-color: #ADEFD1;
+    color: #00203F;
+  }
+  
+  .admin-nav a.active {
+    background-color: #00203F;
+    color: #ADEFD1;
   }
   

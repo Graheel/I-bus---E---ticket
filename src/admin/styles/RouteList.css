@@ -1,0 +1,12 @@
+/* RouteList.css */
+.route-list h3 {
+    color: #00203F;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  
+  .route-list .route-item {
+    margin-bottom: 20px;
+  }
+  
