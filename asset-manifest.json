@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/I-bus---E---ticket/static/css/main.47baa9b1.css",
+    "main.js": "/I-bus---E---ticket/static/js/main.e8e55052.js",
+    "static/js/239.e4681334.chunk.js": "/I-bus---E---ticket/static/js/239.e4681334.chunk.js",
+    "static/js/213.51c526e6.chunk.js": "/I-bus---E---ticket/static/js/213.51c526e6.chunk.js",
+    "static/js/455.5177c2c5.chunk.js": "/I-bus---E---ticket/static/js/455.5177c2c5.chunk.js",
+    "static/media/secure payment.webp": "/I-bus---E---ticket/static/media/secure payment.6279e860e734e5137ebc.webp",
+    "static/media/seats.jpg": "/I-bus---E---ticket/static/media/seats.5b3b2c4f3484e4976a11.jpg",
+    "static/media/easy booking.webp": "/I-bus---E---ticket/static/media/easy booking.d13c17c86d0e8ef82536.webp",
+    "static/media/iterior.jpg": "/I-bus---E---ticket/static/media/iterior.65745aefa584374e67b2.jpg",
+    "static/media/bus.jpg": "/I-bus---E---ticket/static/media/bus.7b0e9768bb7003d8331b.jpg",
+    "static/media/ibus image  2.jpg": "/I-bus---E---ticket/static/media/ibus image  2.cff4b71f829a07293b56.jpg",
+    "static/media/ibus home page image.avif": "/I-bus---E---ticket/static/media/ibus home page image.e383df423e3c5432fd8e.avif",
+    "index.html": "/I-bus---E---ticket/index.html",
+    "main.47baa9b1.css.map": "/I-bus---E---ticket/static/css/main.47baa9b1.css.map",
+    "main.e8e55052.js.map": "/I-bus---E---ticket/static/js/main.e8e55052.js.map",
+    "239.e4681334.chunk.js.map": "/I-bus---E---ticket/static/js/239.e4681334.chunk.js.map",
+    "213.51c526e6.chunk.js.map": "/I-bus---E---ticket/static/js/213.51c526e6.chunk.js.map",
+    "455.5177c2c5.chunk.js.map": "/I-bus---E---ticket/static/js/455.5177c2c5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.47baa9b1.css",
+    "static/js/main.e8e55052.js"
+  ]
+}
