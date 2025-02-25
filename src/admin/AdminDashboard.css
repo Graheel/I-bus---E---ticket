@@ -1,0 +1,116 @@
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 10px 0;
+}
+
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background: #0073e6; 
+}
+
+/* Dashboard Content */
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.dashboard-content header {
+  margin-bottom: 20px;
+}
+
+.dashboard-content h1 {
+  color: #0073e6;
+}
+
+/* Overview Cards */
+.dashboard-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.overview-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.overview-card h3 {
+  color: #555;
+}
+
+.overview-card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0073e6;
+}
+
+/* Charts */
+.chart-section {
+  margin-top: 30px;
+}
+
+.chart-section h3 {
+  margin-bottom: 10px;
+  color: #555;
+}
+/* Exit Button */
+.exit-btn {
+  background-color: #ff4d4d;  /* Red color for emphasis */
+  color: white;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px; /* Add some space below the button */
+}
+
+.exit-btn:hover {
+  background-color: #ff3333;  /* Darker red when hovered */
+}
+
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

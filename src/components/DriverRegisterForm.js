@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 const DriverRegisterForm = () => {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // You can add registration logic here
-    // For now, let's assume the registration is successful
     if (username && email && password) {
-      navigate('/driver-dashboard');  // Redirect to Driver Dashboard after registration
+      navigate("/driver-dashboard");
     }
   };
 
@@ -20,6 +17,7 @@ const DriverRegisterForm = () => {
     <form className="auth-form" onSubmit={handleRegister}>
       <input
         type="text"
+        className="auth-input"
         placeholder="Driver Username"
         required
         value={username}
@@ -27,6 +25,7 @@ const DriverRegisterForm = () => {
       />
       <input
         type="email"
+        className="auth-input"
         placeholder="Email"
         required
         value={email}
@@ -34,12 +33,13 @@ const DriverRegisterForm = () => {
       />
       <input
         type="password"
+        className="auth-input"
         placeholder="Password"
         required
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Register as Driver</button>
+      <button type="submit" className="auth-submit-btn">Register as Driver</button>
     </form>
   );
 };

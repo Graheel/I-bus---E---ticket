@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const DriverLoginForm = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // You can add authentication logic here
-    // For now, let's assume the login is successful
     if (username && password) {
-      navigate('/driver-dashboard');  // Redirect to Driver Dashboard after login
+      navigate("/driver-dashboard");
     }
   };
 
@@ -19,6 +17,7 @@ const DriverLoginForm = () => {
     <form className="auth-form" onSubmit={handleLogin}>
       <input
         type="text"
+        className="auth-input"
         placeholder="Driver Username"
         required
         value={username}
@@ -26,12 +25,13 @@ const DriverLoginForm = () => {
       />
       <input
         type="password"
+        className="auth-input"
         placeholder="Password"
         required
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Driver Login</button>
+      <button type="submit" className="auth-submit-btn">Driver Login</button>
     </form>
   );
 };

@@ -1,54 +1,60 @@
+/* Centered Authentication Box */
 .auth-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly; 
-  margin: 0 auto; 
-  padding: 20px;
-  border-radius: 15px; 
-  background: linear-gradient(to bottom, #ffeb3b, #4caf50); 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 90%; 
-  max-width: 500px; 
-  height: 400px; 
-  color: white; 
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 30px 25px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #ffeb3b, #4caf50);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 450px;
+  min-height: 400px; /* Reduced height */
+  color: white;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease-in-out;
 }
 
-/* Header styles */
+/* Header */
 .auth-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .auth-header h2 {
-  font-size: 24px;
+  font-size: 22px;
   color: white;
   font-weight: bold;
+  text-align: center;
+  width: 100%;
 }
 
-/* Button for switching between login/register */
+/* Login/Register Switch Button */
 .switch-btn {
-  background-color: #4caf50;
+  background-color: rgba(255, 255, 255, 0.2);
   color: white;
-  padding: 8px 16px;
-  border: none;
-  cursor: pointer;
+  padding: 8px 14px;
+  border: 2px solid white;
   border-radius: 5px;
+  cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .switch-btn:hover {
-  background-color: #45a049;
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
 }
 
-/* Button for switching between user/admin/driver */
+/* User/Admin/Driver Switch Buttons */
 .auth-toggle {
   margin-top: 20px;
   text-align: center;
@@ -58,63 +64,111 @@
 }
 
 .switch-user {
-  background-color: #007bff;
-  color: white;
+  background-color: white;
+  color: #4caf50;
   padding: 10px 15px;
-  border: none;
+  border: 2px solid white;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 14px;
-  transition: background-color 0.3s;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  width: 32%;
 }
 
 .switch-user:hover {
-  background-color: #0056b3;
+  background-color: #4caf50;
+  color: white;
+  transform: scale(1.05);
 }
 
-.auth-toggle button {
-  width: 32%; 
-}
-
-/* Form styling */
-form {
+/* Ensure Form Container is Always Same Size */
+.auth-form-container {
+  width: 100%;
+  min-height: 250px; /* Reduced height */
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+/* Form Styling */
+.auth-form {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Input fields */
-input,
-textarea {
-  padding: 10px;
+/* Uniform Input Field Sizing */
+.auth-input {
+  width: 100%;
+  height: 45px; /* Reduced height for consistency */
+  padding: 12px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-  width: 100%; 
-  box-sizing: border-box; 
-}
-
-/* Ensure uniform size for all text fields (both login and register) */
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea {
-  width: 100%; 
-}
-
-/* Submit button */
-button[type="submit"] {
-  padding: 10px;
-  background-color: #007bff;
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.2);
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
+  transition: background 0.3s ease, border 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background-color: #0056b3;
+/* Placeholder Styling */
+.auth-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.auth-input:focus {
+  border-color: #ffeb3b;
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+
+/* Submit Button */
+.auth-submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: white;
+  color: #4caf50;
+  border: 2px solid white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-submit-btn:hover {
+  background-color: #4caf50;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .auth-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+  .auth-header h2 {
+    font-size: 20px;
+  }
+
+  .switch-btn,
+  .switch-user {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .auth-input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .auth-submit-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
 }

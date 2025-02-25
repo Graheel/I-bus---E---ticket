@@ -1,4 +1,3 @@
-// App.js
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
@@ -6,22 +5,23 @@ import HomePage from "./pages/HomePage";
 import BookTicket from "./pages/BookTicket";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-import AuthContainer from "./components/AuthContainer";
 import Footer from "./components/Footer";
 import PaymentPage from "./pages/PaymentPage";
 import AdminDashboard from "./admin/AdminDashboard";
-import DriverDashboard from "./pages/DriverDashboard";
 import ErrorBoundary from "./components/ErrorBoundary";
+import AuthContainer from "./components/AuthContainer"; 
+import DriverDashboard from "./pages/DriverDashboard";
+import DriverLoginForm from "./components/DriverLoginForm";
+
 import "./App.css";
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(true);
-  const [authType, setAuthType] = useState("user");
 
   return (
     <Router>
       <div className="App">
-        {showNavbar && window.location.pathname !== "/driver-dashboard" && <Navbar />}
+        {showNavbar && <Navbar />}
         <Routes>
           <Route
             path="/"
@@ -59,7 +59,7 @@ function App() {
             path="/login-register"
             element={
               <ErrorBoundary>
-                <AuthContainer authType={authType} setAuthType={setAuthType} />
+                <AuthContainer /> {/* Use AuthContainer instead of LoginRegisterPage */}
               </ErrorBoundary>
             }
           />
@@ -79,14 +79,9 @@ function App() {
               </ErrorBoundary>
             }
           />
-          <Route
-            path="/driver-dashboard"
-            element={
-              <ErrorBoundary>
-                <DriverDashboard />
-              </ErrorBoundary>
-            }
-          />
+        
+          <Route path="/driver-login" element={<DriverLoginForm />} />
+          <Route path="/driver-dashboard" element={<DriverDashboard />} />
         </Routes>
         <Footer />
       </div>

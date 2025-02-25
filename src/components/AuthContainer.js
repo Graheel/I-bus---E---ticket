@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AuthSwitch from "./AuthSwitch";
 
 const AuthContainer = () => {
-  const [authType, setAuthType] = useState("user"); // Ensure `setAuthType` exists
+  const [authType, setAuthType] = useState("user"); // Correctly managing state
 
   return (
     <div>

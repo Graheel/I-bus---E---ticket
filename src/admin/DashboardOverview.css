@@ -1,0 +1,43 @@
+.dashboard-overview {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    margin-left: 260px; /* Adjust for sidebar width */
+  }
+  
+  .gradient-card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .gradient-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .gradient-card p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .gradient-card small {
+    font-size: 14px;
+  }
+  
+  .gradient-card.pink {
+    background: linear-gradient(135deg, #ff6a6a, #ff85a2);
+  }
+  
+  .gradient-card.blue {
+    background: linear-gradient(135deg, #3b8beb, #63a4ff);
+  }
+  
+  .gradient-card.green {
+    background: linear-gradient(135deg, #50d890, #70f1a1);
+  }
+  
