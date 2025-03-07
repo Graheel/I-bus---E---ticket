@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.f88d921c.css",
+    "main.js": "/static/js/main.964c3fb5.js",
+    "static/js/239.e4681334.chunk.js": "/static/js/239.e4681334.chunk.js",
+    "static/js/213.51c526e6.chunk.js": "/static/js/213.51c526e6.chunk.js",
+    "static/js/455.5177c2c5.chunk.js": "/static/js/455.5177c2c5.chunk.js",
+    "static/media/secure payment.webp": "/static/media/secure payment.6279e860e734e5137ebc.webp",
+    "static/media/seats.jpg": "/static/media/seats.5b3b2c4f3484e4976a11.jpg",
+    "static/media/easy booking.webp": "/static/media/easy booking.d13c17c86d0e8ef82536.webp",
+    "static/media/iterior.jpg": "/static/media/iterior.65745aefa584374e67b2.jpg",
+    "static/media/bus.jpg": "/static/media/bus.7b0e9768bb7003d8331b.jpg",
+    "static/media/ibus image  2.jpg": "/static/media/ibus image  2.cff4b71f829a07293b56.jpg",
+    "static/media/ibus home page image.avif": "/static/media/ibus home page image.e383df423e3c5432fd8e.avif",
+    "index.html": "/index.html",
+    "main.f88d921c.css.map": "/static/css/main.f88d921c.css.map",
+    "main.964c3fb5.js.map": "/static/js/main.964c3fb5.js.map",
+    "239.e4681334.chunk.js.map": "/static/js/239.e4681334.chunk.js.map",
+    "213.51c526e6.chunk.js.map": "/static/js/213.51c526e6.chunk.js.map",
+    "455.5177c2c5.chunk.js.map": "/static/js/455.5177c2c5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f88d921c.css",
+    "static/js/main.964c3fb5.js"
+  ]
+}
