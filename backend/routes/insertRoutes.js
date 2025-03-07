@@ -37,4 +37,14 @@ const insertRoutes = async () => {
   }
 };
 
+// GET all routes
+router.get("/ibusroutes", async (req, res) => {
+  try {
+    const routes = await iBusRoute.find();
+    res.json(routes);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching routes", error });
+  }
+});
+
 insertRoutes();
