@@ -3,7 +3,7 @@ require("dotenv").config(); // Load environment variables
 const iBusRoute = require("../models/iBusRoutes");
 
 // MongoDB URI
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/ibus";
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://graheelupadhyay:Qxpx8E50ujmnrtVp@cluster0.l4cxk.mongodb.net/ibusDB?retryWrites=true&w=majority&appName=Cluster0";
 
 // Predefined routes with ObjectId
 const predefinedRoutes = [
