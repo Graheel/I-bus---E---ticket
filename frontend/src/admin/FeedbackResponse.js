@@ -11,7 +11,7 @@ const FeedbackResponse = () => {
 
   const fetchContactMessages = async () => {
     try {
-      const response = await axios.get("https://i-bus-e-ticket-2.onrender.com/api/contact/messages");
+      const response = await axios.get("https://i-bus-e-ticket-1.onrender.com/api/contact/messages");
       setResponses(response.data);
     } catch (error) {
       console.error("Error fetching contact messages:", error);

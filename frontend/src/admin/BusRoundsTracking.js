@@ -7,7 +7,7 @@ const BusStatus = () => {
   useEffect(() => {
     const fetchBusStatus = async () => {
       try {
-        const response = await fetch("https://i-bus-e-ticket-2.onrender.com/api/route/all");
+        const response = await fetch("https://i-bus-e-ticket-1.onrender.com/api/route/all");
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

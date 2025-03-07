@@ -16,7 +16,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: "https://i-bus-e-ticket-2.onrender.com", credentials: true }));
+app.use(cors({ origin: "https://i-bus-e-ticket.onrender.com", credentials: true }));
 
 // Connect Database
 connectDB();
