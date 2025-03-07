@@ -8,7 +8,7 @@ const TotalBookedTickets = () => {
 
   const fetchTickets = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/tickets/all");
+      const response = await axios.get("https://i-bus-e-ticket-2.onrender.com/api/tickets/all");
       setTickets(response.data);
       calculateTotalPrice(response.data);
     } catch (error) {
