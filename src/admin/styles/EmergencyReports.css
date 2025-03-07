@@ -1,45 +1,43 @@
-/* EmergencyReports.css */
 .emergency-reports {
-    padding: 20px;
-  }
-  
-  .emergency-reports h2 {
-    color: #00203F;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .emergency-reports table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .emergency-reports th,
-  .emergency-reports td {
-    padding: 15px;
-    text-align: left;
-    font-size: 1rem;
-  }
-  
-  .emergency-reports th {
-    background-color: #00203F;
-    color: #ADEFD1;
-  }
-  
-  .emergency-reports tr:nth-child(even) {
-    background-color: #f7f9fc;
-  }
-  
-  .emergency-reports tr:hover {
-    background-color: #dce1e7;
-  }
-  
-  .emergency-reports td {
-    border-bottom: 1px solid #ccc;
-    color: #333;
-  }
-  
+  padding: 20px;
+}
+
+.emergency-reports h2 {
+  color: #00203F;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.emergency-reports table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.emergency-reports th,
+.emergency-reports td {
+  padding: 15px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.emergency-reports th {
+  background-color: #00203F;
+  color: #ADEFD1;
+}
+
+.emergency-reports tr:nth-child(even) {
+  background-color: #f7f9fc;
+}
+
+.emergency-reports tr:hover {
+  background-color: #dce1e7;
+}
+
+.emergency-reports td {
+  border-bottom: 1px solid #ccc;
+  color: #333;
+}

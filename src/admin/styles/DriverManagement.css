@@ -1,18 +1,17 @@
-/* DriverManagement.css */
 .driver-management {
-    padding: 20px;
-  }
-  
-  .driver-management h2 {
-    color: #00203F;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .driver-management .driver-list,
-  .driver-management .driver-form {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.driver-management h2 {
+  color: #00203F;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.driver-management .driver-list,
+.driver-management .driver-form {
+  max-width: 800px;
+  margin: 0 auto;
+}

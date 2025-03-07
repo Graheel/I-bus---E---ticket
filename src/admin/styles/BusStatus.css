@@ -1,0 +1,57 @@
+/* BusRoundsTracking.css */
+.bus-rounds-tracking {
+    padding: 20px;
+  }
+  
+  .bus-rounds-tracking h2 {
+    color: #00203F;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .bus-rounds-tracking table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .bus-rounds-tracking th,
+  .bus-rounds-tracking td {
+    padding: 15px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .bus-rounds-tracking th {
+    background-color: #00203F;
+    color: #ADEFD1;
+  }
+  
+  .bus-rounds-tracking tr:nth-child(even) {
+    background-color: #f7f9fc;
+  }
+  
+  .bus-rounds-tracking tr:hover {
+    background-color: #dce1e7;
+  }
+  
+  .bus-rounds-tracking td {
+    border-bottom: 1px solid #ccc;
+    color: #333;
+  }
+  .delete-button {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .delete-button:hover {
+    background-color: #e53935;
+  }

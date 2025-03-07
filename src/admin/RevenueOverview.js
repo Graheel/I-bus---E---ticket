@@ -1,24 +1,30 @@
-// RevenueOverview.js
-import React, { useState, useEffect } from "react";
-import "./styles/RevenueOverview.css";
+import React, { useState, useEffect, useCallback } from "react";
+import axios from "axios";
+import "./styles/RevenueOverview.css"; 
 
-const RevenueOverview = () => {
+const TotalRevenue = () => {
   const [totalRevenue, setTotalRevenue] = useState(0);
 
-  useEffect(() => {
-    // Fetch revenue data from backend or use dummy data
-    const dummyRevenue = 5000; // Example amount
-    setTotalRevenue(dummyRevenue);
+  const fetchTotalRevenue = useCallback(async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/tickets/all");
+      const total = response.data.reduce((sum, ticket) => sum + ticket.price, 0);
+      setTotalRevenue(total);
+    } catch (error) {
+      console.error("Error fetching total revenue:", error.response ? error.response.data : error.message);
+    }
   }, []);
 
+  useEffect(() => {
+    fetchTotalRevenue();
+  }, [fetchTotalRevenue]);
+
   return (
-    <div className="revenue-overview">
-      <h2>Revenue Overview</h2>
-      <p>
-        <strong>Total Revenue Generated Today:</strong> ${totalRevenue}
-      </p>
+    <div className="total-revenue">
+      <h2>Total Revenue</h2>
+      <p>Total Revenue from Booked Tickets: <strong>₹{totalRevenue}</strong></p>
     </div>
   );
 };
 
-export default RevenueOverview;
+export default TotalRevenue;

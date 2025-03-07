@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './BookTicket.css';
 
 const BookTicket = () => {
@@ -13,48 +14,74 @@ const BookTicket = () => {
   const [stops, setStops] = useState([]);
   const navigate = useNavigate();
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const currentTime = new Date().toISOString();
+    const ticketDetails = {
+      username,
+      phone,
+      route,
+      source,
+      destination,
+      date,
+      price,
+      bookingTime: currentTime, 
+    };
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/tickets/book', ticketDetails);
+      if (response.status === 201) {
+        alert('Ticket booked successfully!');
+        navigate('/payment', { state: { ticketDetails } });
+      }
+    } catch (error) {
+      console.error('Error booking ticket:', error);
+      alert('There was an error booking your ticket. Please try again.');
+    }
+  };
+
   const routes = {
-'Vijay Nagar to Niranjanpur': ['Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur'],
-    'Niranjanpur to Rajiv Gandhi Square': [
+    'Route-A | Vijay Nagar to Niranjanpur': ['Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur'],
+    'Route-B | Niranjanpur to Rajiv Gandhi Square': [
       'Niranjanpur', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Vijay Nagar', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'G.P.O', 'Indra Pratima',
       'Navlakha Square', 'Holkar Subway', 'Bhavarkua Square', 'Vishnu Puri', 'Mata Gujari', 'Rajiv Gandhi Square',
     ],
-    'Rajiv Gandhi Square to Silicon City': [
+    'Route-C | Rajiv Gandhi Square to Silicon City': [
       'Rajiv Gandhi Square', 'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar',
       'Durga Nagar', 'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City',
     ],
-    'Rajiv Gandhi Square to Rau Bypass': [
+    'Route-D | Rajiv Gandhi Square to Rau Bypass': [
       'Rajiv Gandhi Square', 'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar',
       'Durga Nagar', 'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City', 'Jeevan Jyoti', 'Rau Petrolpump',
       'Rau Bus Stop', 'Mamaji Ka Dhaba', 'Rau Bypass',
     ],
-    'Rajiv Gandhi Square to Mahu Railway Station': [
+    'Route-E | Rajiv Gandhi Square to Mahu Railway Station': [
       'Rajiv Gandhi Square', 'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar',
       'Durga Nagar', 'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City', 'Jeevan Jyoti', 'Rau Petrolpump',
       'Rau Bus Stop', 'Mamaji Ka Dhaba', 'Rau Bypass', 'Hardiyas Hospital', 'Alpa Labour', 'Medicaps Company', 'Pigdambar',
       'Peethampur Bypass', 'Keshav Park', 'Umariya Gaon', 'A.D Bansal College of Technology', 'IIT Indore', 'EC Hospital',
       'Kishanganj', 'Indra Colony', 'Hari Phatak', 'Mahu Railway Station',
     ],
-    'Vijay Nagar to Rajiv Gandhi Square': [
+    'Route-F | Vijay Nagar to Rajiv Gandhi Square': [
       'Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'G.P.O', 'Indra Pratima',
       'Navlakha Square', 'Holkar Subway', 'Bhavarkua Square', 'Vishnu Puri', 'Mata Gujari', 'Rajiv Gandhi Square'
     ],
-    'Vijay Nagar to Silicon City': [
+    'Route-G | Vijay Nagar to Silicon City': [
       'Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
       'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City'
     ],
-    'Vijay Nagar to Rau Bypass': [
+    'Route-H | Vijay Nagar to Rau Bypass': [
       'Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
       'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City', 'Jeevan Jyoti', 'Rau Petrolpump', 'Rau Bus Stop',
       'Mamaji Ka Dhaba', 'Rau Bypass'
     ],
-    'Vijay Nagar to Mahu Railway Station': [
+    'Route-I | Vijay Nagar to Mahu Railway Station': [
       'Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
@@ -63,20 +90,20 @@ const BookTicket = () => {
       'Peethampur Bypass', 'Keshav Park', 'Umariya Gaon', 'A.D Bansal College of Technology', 'IIT Indore', 'EC Hospital',
       'Kishanganj', 'Indra Colony', 'Hari Phatak', 'Mahu Railway Station'
     ],
-    'Niranjanpur to Silicon City': [
+    'Route-J | Niranjanpur to Silicon City': [
       'Niranjanpur', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Vijay Nagar', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
       'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City'
     ],
-    'Niranjanpur to Rau Bypass': [
+    'Route-K | Niranjanpur to Rau Bypass': [
       'Niranjanpur', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Vijay Nagar', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
       'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City', 'Jeevan Jyoti', 'Rau Petrolpump', 'Rau Bus Stop',
       'Mamaji Ka Dhaba', 'Rau Bypass'
     ],
-    'Niranjanpur to Mahu Railway Station': [
+    'Route-L | Niranjanpur to Mahu Railway Station': [
       'Niranjanpur', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Vijay Nagar', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
@@ -84,7 +111,7 @@ const BookTicket = () => {
       'Mamaji Ka Dhaba', 'Rau Bypass', 'Hardiyas Hospital', 'Alpa Labour', 'Medicaps Company', 'Pigdambar',
       'Peethampur Bypass', 'Keshav Park', 'Umariya Gaon', 'A.D Bansal College of Technology', 'IIT Indore', 'EC Hospital',
       'Kishanganj', 'Indra Colony', 'Hari Phatak', 'Mahu Railway Station'
-    ]  
+    ]
   };
 
   const calculatePrice = (source, destination) => {
@@ -122,24 +149,6 @@ const BookTicket = () => {
     if (source) setPrice(calculatePrice(source, e.target.value));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Ticket booked for ${username} from ${source} to ${destination} on ${date}. Total price: ₹${price}`);
-    navigate('/payment', {
-      state: {
-        ticketDetails: {
-          username,
-          phone,
-          route,
-          source,
-          destination,
-          date,
-          price,
-        },
-      },
-    });
-  };
-
   return (
     <div className="book-ticket-container">
       <div className="book-ticket">
@@ -161,7 +170,7 @@ const BookTicket = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
-              pattern="[0-9]{10}" // Validate phone number format
+              pattern="[0-9]{10}" 
               title="Phone number should be 10 digits"
             />
           </div>

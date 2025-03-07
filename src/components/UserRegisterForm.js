@@ -1,38 +1,32 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const UserLoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const UserRegisterForm = () => {
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Login Attempt:", { email, password }); // Debugging
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post("http://localhost:5000/api/auth/register", { username, email, password, role: "user" });
+            alert("User registered successfully!");
+            navigate("/home");
+        } catch (error) {
+            alert("Registration failed.");
+        }
+    };
 
-  return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <input type="text" placeholder="Username" className="auth-input" required />
-      <input
-        type="email"
-        className="auth-input"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        className="auth-input"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit" className="auth-submit-btn">
-        User Register
-      </button>
-    </form>
-  );
+    return (
+        <form className="auth-form" onSubmit={handleSubmit}>
+            <input type="text" className="auth-input" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+            <input type="email" className="auth-input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="password" className="auth-input" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <button type="submit" className="auth-submit-btn">User Register</button>
+        </form>
+    );
 };
 
-export default UserLoginForm;
+export default UserRegisterForm;

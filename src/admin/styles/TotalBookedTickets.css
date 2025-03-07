@@ -1,0 +1,44 @@
+.total-booked-tickets {
+    padding: 20px;
+  }
+  
+  .total-booked-tickets h2 {
+    color: #00203F;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .total-booked-tickets table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .total-booked-tickets th,
+  .total-booked-tickets td {
+    padding: 15px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .total-booked-tickets th {
+    background-color: #00203F;
+    color: #ADEFD1;
+  }
+  
+  .total-booked-tickets tr:nth-child(even) {
+    background-color: #f7f9fc;
+  }
+  
+  .total-booked-tickets tr:hover {
+    background-color: #dce1e7;
+  }
+  
+  .total-booked-tickets td {
+    border-bottom: 1px solid #ccc;
+    color: #333;
+  }
+  

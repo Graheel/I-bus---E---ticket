@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; 
 import './ContactPage.css';
 
 const ContactPage = () => {
@@ -6,12 +7,22 @@ const ContactPage = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Thank you, ${name}! Your message has been received.`);
-    setName('');
-    setEmail('');
-    setMessage('');
+    const contactData = { name, email, message };
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/contact/submit', contactData);
+      if (response.status === 201) {
+        alert(`Thank you, ${name}! Your message has been received.`);
+        setName('');
+        setEmail('');
+        setMessage('');
+      }
+    } catch (error) {
+      console.error('Error submitting contact message:', error);
+      alert('There was an error submitting your message. Please try again.');
+    }
   };
 
   return (

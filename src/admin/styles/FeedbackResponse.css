@@ -1,0 +1,44 @@
+.feedback-responses {
+    padding: 20px;
+  }
+  
+  .feedback-responses h2 {
+    color: #00203F;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .feedback-responses table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .feedback-responses th,
+  .feedback-responses td {
+    padding: 15px;
+    text-align: left;
+    font-size: 1rem;
+  }
+  
+  .feedback-responses th {
+    background-color: #00203F;
+    color: #ADEFD1;
+  }
+  
+  .feedback-responses tr:nth-child(even) {
+    background-color: #f7f9fc;
+  }
+  
+  .feedback-responses tr:hover {
+    background-color: #dce1e7;
+  }
+  
+  .feedback-responses td {
+    border-bottom: 1px solid #ccc;
+    color: #333;
+  }
+  

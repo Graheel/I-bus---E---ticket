@@ -1,91 +1,44 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import HomePage from "./pages/HomePage";
+import Footer from "./components/Footer";
+import AuthContainer from "./components/AuthContainer";
 import BookTicket from "./pages/BookTicket";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
-import Footer from "./components/Footer";
 import PaymentPage from "./pages/PaymentPage";
+import HomePage from "./pages/HomePage";
 import AdminDashboard from "./admin/AdminDashboard";
-import ErrorBoundary from "./components/ErrorBoundary";
-import AuthContainer from "./components/AuthContainer"; 
 import DriverDashboard from "./pages/DriverDashboard";
 import DriverLoginForm from "./components/DriverLoginForm";
+import AdminLoginForm from "./components/AdminLoginForm";
 
 import "./App.css";
 
 function App() {
   const [showNavbar, setShowNavbar] = useState(true);
+  const location = useLocation();
+  const noNavFooterRoutes = ["/login-register", "/driver-login", "/admin-login"];
 
   return (
-    <Router>
-      <div className="App">
-        {showNavbar && <Navbar />}
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <ErrorBoundary>
-                <HomePage />
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/book-ticket"
-            element={
-              <ErrorBoundary>
-                <BookTicket setShowNavbar={setShowNavbar} />
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <ErrorBoundary>
-                <AboutPage />
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <ErrorBoundary>
-                <ContactPage />
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/login-register"
-            element={
-              <ErrorBoundary>
-                <AuthContainer /> {/* Use AuthContainer instead of LoginRegisterPage */}
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/payment"
-            element={
-              <ErrorBoundary>
-                <PaymentPage setShowNavbar={setShowNavbar} />
-              </ErrorBoundary>
-            }
-          />
-          <Route
-            path="/admin-dashboard/*"
-            element={
-              <ErrorBoundary>
-                <AdminDashboard setShowNavbar={setShowNavbar} />
-              </ErrorBoundary>
-            }
-          />
-        
-          <Route path="/driver-login" element={<DriverLoginForm />} />
-          <Route path="/driver-dashboard" element={<DriverDashboard />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <div className="App">
+      {showNavbar && !noNavFooterRoutes.includes(location.pathname) && <Navbar />}
+      <Routes>
+        {/* ✅ Redirect root path ("/") to login-register */}
+        <Route path="/" element={<Navigate to="/login-register" />} />
+        <Route path="/home" element={<HomePage />} /> {/* Set HomePage separately */}
+        <Route path="/book-ticket" element={<BookTicket />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/login-register" element={<AuthContainer />} />
+        <Route path="/admin-login" element={<AdminLoginForm />} />
+        <Route path="/driver-login" element={<DriverLoginForm />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/admin-dashboard/*" element={<AdminDashboard setShowNavbar={setShowNavbar} />} />
+        <Route path="/driver-dashboard" element={<DriverDashboard />} />
+      </Routes>
+      {showNavbar && !noNavFooterRoutes.includes(location.pathname) && <Footer />}
+    </div>
   );
 }
 

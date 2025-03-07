@@ -7,7 +7,7 @@
   margin: 0 auto;
   padding: 30px 25px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #ffeb3b, #4caf50);
+  background: linear-gradient(135deg, pink,skyblue);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   width: 90%;
   max-width: 450px;
@@ -19,6 +19,7 @@
   transform: translate(-50%, -50%);
   transition: all 0.3s ease-in-out;
 }
+
 
 /* Header */
 .auth-header {
@@ -40,17 +41,17 @@
 /* Login/Register Switch Button */
 .switch-btn {
   background-color: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: rgb(255, 0, 0);
   padding: 8px 14px;
   border: 2px solid white;
   border-radius: 5px;
   cursor: pointer;
   font-size: 14px;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: 0.3s ease, transform 0.2s ease;
 }
 
 .switch-btn:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: white;
   transform: scale(1.05);
 }
 
@@ -65,27 +66,27 @@
 
 .switch-user {
   background-color: white;
-  color: #4caf50;
+  color: #ff0000;
   padding: 10px 15px;
   border: 2px solid white;
   cursor: pointer;
   border-radius: 6px;
   font-size: 14px;
   font-weight: bold;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  transition:0.3s ease, color 0.3s ease, transform 0.2s ease;
   width: 32%;
 }
 
 .switch-user:hover {
-  background-color: #4caf50;
+  background-color: #ff0000;
   color: white;
   transform: scale(1.05);
 }
 
-/* Ensure Form Container is Always Same Size */
+
 .auth-form-container {
   width: 100%;
-  min-height: 250px; /* Reduced height */
+  min-height: 250px; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,10 +100,10 @@
   align-items: center;
 }
 
-/* Uniform Input Field Sizing */
+
 .auth-input {
   width: 100%;
-  height: 45px; /* Reduced height for consistency */
+  height: 45px; 
   padding: 12px;
   margin-bottom: 10px;
   border: 2px solid white;
@@ -110,7 +111,7 @@
   font-size: 15px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: black;
   transition: background 0.3s ease, border 0.3s ease;
 }
 
@@ -130,7 +131,7 @@
   width: 100%;
   padding: 12px;
   background-color: white;
-  color: #4caf50;
+  color: #ff0000;
   border: 2px solid white;
   border-radius: 6px;
   cursor: pointer;
@@ -140,7 +141,7 @@
 }
 
 .auth-submit-btn:hover {
-  background-color: #4caf50;
+  background-color: #ff0000;
   color: white;
   transform: scale(1.05);
 }

@@ -1,24 +1,45 @@
-// EmergencyReports.js
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./styles/EmergencyReports.css";
 
 const EmergencyReports = () => {
-  const [reports, setReports] = useState([]);
+  const [reports, setReports] = useState([]); 
+  const [lastAlertId, setLastAlertId] = useState(null); 
 
   useEffect(() => {
-    // Fetch emergency reports from backend or use dummy data
-    const dummyReports = [
-      {
-        id: 1,
-        driver: "John Doe",
-        busNumber: "BUS-001",
-        issue: "Engine malfunction",
-        timeReported: "10:00 AM",
-      },
-      // Add more reports as needed
-    ];
-    setReports(dummyReports);
-  }, []);
+    const fetchEmergencyReports = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/route/emergency-reports");
+        console.log("API Response:", response.data);
+
+        if (response.data) {
+          const newReports = response.data;
+
+          // Trigger alert for new emergencies
+          newReports.forEach((report) => {
+            if (report.routeId !== lastAlertId) {
+              // Show an alert popup for the new emergency
+              alert(
+                `🚨 Emergency Alert! 🚨\n\nDriver: ${report.driverName || "Not Available"}\nBus: ${report.busNumber || "Not Available"}\nMessage: ${report.emergencyMessage || "Not Available"}`
+              );
+              // Update the last alerted ID to prevent duplicate alerts
+              setLastAlertId(report.routeId);
+            }
+          });
+
+          setReports(newReports); 
+          console.log("Reports updated:", response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching emergency reports:", error);
+      }
+    };
+
+    // Poll the backend every 1 seconds
+    const interval = setInterval(fetchEmergencyReports, 1000);
+
+    return () => clearInterval(interval); 
+  }, [lastAlertId]); 
 
   return (
     <div className="emergency-reports">
@@ -26,21 +47,39 @@ const EmergencyReports = () => {
       <table>
         <thead>
           <tr>
-            <th>Driver</th>
+            <th>Route ID</th>
+            <th>Driver Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>License Number</th>
             <th>Bus Number</th>
-            <th>Issue</th>
+            <th>Nameplate Number</th>
+            <th>Emergency Messages</th>
             <th>Time Reported</th>
           </tr>
         </thead>
         <tbody>
-          {reports.map((report) => (
-            <tr key={report.id}>
-              <td>{report.driver}</td>
-              <td>{report.busNumber}</td>
-              <td>{report.issue}</td>
-              <td>{report.timeReported}</td>
+          {reports.length > 0 ? (
+            reports.map((report, index) => (
+              <tr key={index}>
+                <td>{report.routeId || "Not Available"}</td>
+                <td>{report.driverName || "Not Available"}</td>
+                <td>{report.driverEmail || "Not Available"}</td>
+                <td>{report.contact || "Not Available"}</td>
+                <td>{report.licenseNumber || "Not Available"}</td>
+                <td>{report.busNumber || "Not Available"}</td>
+                <td>{report.nameplateNumber || "Not Available"}</td>
+                <td>{report.emergencyMessage || "Not Available"}</td>
+                <td>{report.timeReported || "Not Available"}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="9" style={{ textAlign: "center" }}>
+                No emergency reports available
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

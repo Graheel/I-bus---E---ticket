@@ -22,47 +22,47 @@ const Navbar = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const routes = {
-    'Vijay Nagar to Niranjanpur': ['Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur'],
-    'Niranjanpur to Rajiv Gandhi Square': [
+    'Route-A | Vijay Nagar to Niranjanpur': ['Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur'],
+    'Route-B | Niranjanpur to Rajiv Gandhi Square': [
       'Niranjanpur', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Vijay Nagar', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'G.P.O', 'Indra Pratima',
       'Navlakha Square', 'Holkar Subway', 'Bhavarkua Square', 'Vishnu Puri', 'Mata Gujari', 'Rajiv Gandhi Square',
     ],
-    'Rajiv Gandhi Square to Silicon City': [
+    'Route-C | Rajiv Gandhi Square to Silicon City': [
       'Rajiv Gandhi Square', 'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar',
       'Durga Nagar', 'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City',
     ],
-    'Rajiv Gandhi Square to Rau Bypass': [
+    'Route-D | Rajiv Gandhi Square to Rau Bypass': [
       'Rajiv Gandhi Square', 'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar',
       'Durga Nagar', 'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City', 'Jeevan Jyoti', 'Rau Petrolpump',
       'Rau Bus Stop', 'Mamaji Ka Dhaba', 'Rau Bypass',
     ],
-    'Rajiv Gandhi Square to Mahu Railway Station': [
+    'Route-E | Rajiv Gandhi Square to Mahu Railway Station': [
       'Rajiv Gandhi Square', 'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar',
       'Durga Nagar', 'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City', 'Jeevan Jyoti', 'Rau Petrolpump',
       'Rau Bus Stop', 'Mamaji Ka Dhaba', 'Rau Bypass', 'Hardiyas Hospital', 'Alpa Labour', 'Medicaps Company', 'Pigdambar',
       'Peethampur Bypass', 'Keshav Park', 'Umariya Gaon', 'A.D Bansal College of Technology', 'IIT Indore', 'EC Hospital',
       'Kishanganj', 'Indra Colony', 'Hari Phatak', 'Mahu Railway Station',
     ],
-    'Vijay Nagar to Rajiv Gandhi Square': [
+    'Route-F | Vijay Nagar to Rajiv Gandhi Square': [
       'Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'G.P.O', 'Indra Pratima',
       'Navlakha Square', 'Holkar Subway', 'Bhavarkua Square', 'Vishnu Puri', 'Mata Gujari', 'Rajiv Gandhi Square'
     ],
-    'Vijay Nagar to Silicon City': [
+    'Route-G | Vijay Nagar to Silicon City': [
       'Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
       'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City'
     ],
-    'Vijay Nagar to Rau Bypass': [
+    'Route-H | Vijay Nagar to Rau Bypass': [
       'Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
       'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City', 'Jeevan Jyoti', 'Rau Petrolpump', 'Rau Bus Stop',
       'Mamaji Ka Dhaba', 'Rau Bypass'
     ],
-    'Vijay Nagar to Mahu Railway Station': [
+    'Route-I | Vijay Nagar to Mahu Railway Station': [
       'Vijay Nagar', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Niranjanpur', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
@@ -71,20 +71,20 @@ const Navbar = () => {
       'Peethampur Bypass', 'Keshav Park', 'Umariya Gaon', 'A.D Bansal College of Technology', 'IIT Indore', 'EC Hospital',
       'Kishanganj', 'Indra Colony', 'Hari Phatak', 'Mahu Railway Station'
     ],
-    'Niranjanpur to Silicon City': [
+    'Route-J | Niranjanpur to Silicon City': [
       'Niranjanpur', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Vijay Nagar', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
       'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City'
     ],
-    'Niranjanpur to Rau Bypass': [
+    'Route-K | Niranjanpur to Rau Bypass': [
       'Niranjanpur', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Vijay Nagar', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
       'Reti Mandi', 'Gamla Wali Pudiya', 'IPS Academy', 'Silicon City', 'Jeevan Jyoti', 'Rau Petrolpump', 'Rau Bus Stop',
       'Mamaji Ka Dhaba', 'Rau Bypass'
     ],
-    'Niranjanpur to Mahu Railway Station': [
+    'Route-L | Niranjanpur to Mahu Railway Station': [
       'Niranjanpur', 'Scheme 78', 'Shalini Township', 'Satya Sai Square', 'Vijay Nagar', 'MR 9', 'Press Complex',
       'L.I.G', 'Industry House', 'Palasiya', 'Geeta Bhavan Square', 'ICTSL', 'Shivaji Vatika', 'Rajiv Gandhi Square',
       'Abhyass Udyan', 'Maa Vihar', 'Gadbadi Bridge', 'Arjun Nagar', 'Bijalpur', 'Ragendra Nagar', 'Durga Nagar',
@@ -125,7 +125,7 @@ const Navbar = () => {
         </Typography>
 
         <div className="nav-links">
-          <Link to="/" className="nav-link">
+          <Link to="/home" className="nav-link">
             <Button color="inherit" className="nav-button">Home</Button>
           </Link>
           <Link to="/book-ticket" className="nav-link">
@@ -162,7 +162,7 @@ const Navbar = () => {
             iBus E-Ticket
           </Typography>
           <Divider />
-          <Link to="/" className="drawer-link">
+          <Link to="/home" className="drawer-link">
             <Button fullWidth onClick={() => toggleDrawer(false)}>Home</Button>
           </Link>
           <Link to="/book-ticket" className="drawer-link">

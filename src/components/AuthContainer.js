@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import AuthSwitch from "./AuthSwitch";
+import "./AuthContainer.css"; 
 
 const AuthContainer = () => {
-  const [authType, setAuthType] = useState("user"); // Correctly managing state
+  const [authType, setAuthType] = useState("user");
 
   return (
-    <div>
-      <AuthSwitch authType={authType} setAuthType={setAuthType} />
+    <div className="auth-container">
+      {/* Welcome Banner */}
+      <div className="welcome-banner">
+        <h1>WELCOME TO IBUS - E TICKET</h1>
+      </div>
+
+      {/* Auth Forms */}
+      <div className="auth-content">
+        <AuthSwitch authType={authType} setAuthType={setAuthType} />
+      </div>
     </div>
   );
 };

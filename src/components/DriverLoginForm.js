@@ -1,39 +1,40 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const DriverLoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (username && password) {
-      navigate("/driver-dashboard");
-    }
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
 
-  return (
-    <form className="auth-form" onSubmit={handleLogin}>
-      <input
-        type="text"
-        className="auth-input"
-        placeholder="Driver Username"
-        required
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        className="auth-input"
-        placeholder="Password"
-        required
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit" className="auth-submit-btn">Driver Login</button>
-    </form>
-  );
+            if (res.data.user.role !== "driver") {
+                alert("Not a driver account!");
+                return;
+            }
+
+            // ✅ Store driver email for fetching details later
+            localStorage.setItem("driverEmail", res.data.user.email);
+            sessionStorage.setItem("driverEmail", res.data.user.email);  
+            localStorage.setItem("token", res.data.token);
+
+            navigate("/driver-dashboard");
+        } catch (error) {
+            alert("Invalid credentials");
+        }
+    };
+
+    return (
+        <form className="auth-form" onSubmit={handleSubmit}>
+            <input type="email" className="auth-input" placeholder="Driver Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="password" className="auth-input" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <button type="submit" className="auth-submit-btn">Driver Login</button>
+        </form>
+    );
 };
 
 export default DriverLoginForm;

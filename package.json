@@ -6,8 +6,11 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@google-pay/button-react": "^3.1.0",
     "@mui/icons-material": "^6.4.0",
     "@mui/material": "^6.4.0",
+    "@square/web-sdk": "^2.1.0",
+    "axios": "^1.8.1",
     "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.7",
     "cors": "^2.8.5",
@@ -24,7 +27,10 @@
     "react-dom": "^19.0.0",
     "react-qr-code": "^2.0.15",
     "react-router-dom": "^7.2.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "square": "^41.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

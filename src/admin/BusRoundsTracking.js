@@ -1,53 +1,100 @@
-// BusRoundsTracking.js
 import React, { useState, useEffect } from "react";
-import "./styles/BusRoundsTracking.css";
+import "./styles/BusStatus.css";
 
-const BusRoundsTracking = () => {
-  const [rounds, setRounds] = useState([]);
+const BusStatus = () => {
+  const [busStatus, setBusStatus] = useState([]);
 
   useEffect(() => {
-    // Fetch rounds data from backend or use dummy data
-    const dummyRounds = [
-      {
-        id: 1,
-        busNumber: "BUS-001",
-        driver: "John Doe",
-        roundsCompleted: 5,
-        startTime: "08:00 AM",
-        status: "On Time",
-      },
-      // Add more rounds as needed
-    ];
-    setRounds(dummyRounds);
+    const fetchBusStatus = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/route/all");
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Fetched Bus Status:", data);
+        setBusStatus(data);
+      } catch (error) {
+        console.error("Error fetching bus status data:", error);
+      }
+    };
+
+    fetchBusStatus();
   }, []);
 
+  // Function to delete a bus status locally
+  const handleDelete = (id) => {
+    const updatedBusStatus = busStatus.filter((status) => status._id !== id);
+    setBusStatus(updatedBusStatus);
+    alert("Bus status deleted from the page!");
+  };
+
   return (
-    <div className="bus-rounds-tracking">
-      <h2>Bus Rounds Tracking</h2>
+    <div className="bus-status">
+      <h2>Bus Status</h2>
       <table>
         <thead>
           <tr>
+            <th>Driver Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>License Number</th>
+            <th>Route Assigned</th>
             <th>Bus Number</th>
-            <th>Driver</th>
-            <th>Rounds Completed</th>
+            <th>Nameplate Number</th>
             <th>Start Time</th>
-            <th>Status</th>
+            <th>End Time</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {rounds.map((round) => (
-            <tr key={round.id}>
-              <td>{round.busNumber}</td>
-              <td>{round.driver}</td>
-              <td>{round.roundsCompleted}</td>
-              <td>{round.startTime}</td>
-              <td>{round.status}</td>
+          {busStatus.length > 0 ? (
+            busStatus.map((status, index) => {
+              const driverDetails = status.driverDetails || {};
+
+              return (
+                <tr key={index}>
+                  <td>{driverDetails.name || "Data Missing"}</td>
+                  <td>{driverDetails.email || "Data Missing"}</td>
+                  <td>{driverDetails.contact || "Data Missing"}</td>
+                  <td>{driverDetails.licenseNumber || "Data Missing"}</td>
+                  <td>{driverDetails.routeAssigned || "Data Missing"}</td>
+                  <td>{driverDetails.busDetails?.busNumber || "Data Missing"}</td>
+                  <td>{driverDetails.busDetails?.nameplateNumber || "Data Missing"}</td>
+                  <td>
+                    {status.routeStartedAt
+                      ? new Date(status.routeStartedAt).toLocaleString()
+                      : "Data Missing"}
+                  </td>
+                  <td>
+                    {status.routeEndedAt
+                      ? new Date(status.routeEndedAt).toLocaleString()
+                      : "Data Missing"}
+                  </td>
+                  <td>
+                    <button
+                      className="delete-button"
+                      onClick={() => handleDelete(status._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })
+          ) : (
+            <tr>
+              <td colSpan="10" style={{ textAlign: "center" }}>
+                No data available
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
   );
 };
 
-export default BusRoundsTracking;
+export default BusStatus;

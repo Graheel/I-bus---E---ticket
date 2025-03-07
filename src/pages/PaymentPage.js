@@ -1,15 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import GooglePayButton from '@google-pay/button-react'; 
 import './PaymentPage.css';
 import jsPDF from 'jspdf';
 import QRCode from 'qrcode';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 const PaymentPage = ({ setShowNavbar }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { ticketDetails } = location.state || {}; 
+  const ticketDetails = location.state?.ticketDetails; 
   const [pdfUrl, setPdfUrl] = useState('');
+
+  console.log('Ticket Details:', ticketDetails);
 
   useEffect(() => {
     if (setShowNavbar) setShowNavbar(false);
@@ -29,10 +33,14 @@ const PaymentPage = ({ setShowNavbar }) => {
     doc.text(`Date: ${date}`, 20, 60);
     doc.text(`Total Price: ₹${price}`, 20, 70);
 
-    const qrCodeData = `${username}_${source}_${destination}_${date}_${price}`;
-    const qrCodeDataUrl = await QRCode.toDataURL(qrCodeData);
+    try {
+      const qrCodeData = `${username}_${source}_${destination}_${date}_${price}`;
+      const qrCodeDataUrl = await QRCode.toDataURL(qrCodeData);
 
-    doc.addImage(qrCodeDataUrl, 'PNG', 20, 80, 50, 50);
+      doc.addImage(qrCodeDataUrl, 'PNG', 20, 80, 50, 50);
+    } catch (err) {
+      console.error('Error generating QR code:', err);
+    }
 
     const pdfOutput = doc.output('blob');
     const url = URL.createObjectURL(pdfOutput);
@@ -41,36 +49,76 @@ const PaymentPage = ({ setShowNavbar }) => {
 
   useEffect(() => {
     if (!ticketDetails) {
-      alert('No ticket details found!');
+      alert('No ticket details found! Redirecting to home...');
       navigate('/');
     } else {
       generatePDF();
     }
   }, [ticketDetails, navigate, generatePDF]);
 
-  const handlePayment = (method) => {
-    alert(`Payment via ${method} successful!`);
-    if (pdfUrl) window.open(pdfUrl, '_blank');
-    navigate('/'); 
+  const handlePayment = async (paymentData) => {
+    if (!ticketDetails?.price) {
+      alert('Invalid ticket details. Please try again.');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/payment/create-payment-intent', {
+        amount: ticketDetails.price,
+      });
+
+      if (response.status === 200) {
+        alert('Payment successful!');
+        if (pdfUrl) window.open(pdfUrl, '_blank');
+        navigate('/');
+      }
+    } catch (error) {
+      console.error('Error processing payment:', error);
+      alert('There was an error processing your payment. Please try again.');
+    }
   };
 
-  if (!ticketDetails) return null; 
+  if (!ticketDetails) return null;
 
   return (
     <div className="payment-page">
       <h1>Payment Portal</h1>
       <h3>Total Amount: ₹{ticketDetails.price}</h3>
-      <div className="payment-methods">
-        <button onClick={() => handlePayment('Credit Card')} className="payment-btn">
-          Pay with Credit Card
-        </button>
-        <button onClick={() => handlePayment('Debit Card')} className="payment-btn">
-          Pay with Debit Card
-        </button>
-        <button onClick={() => handlePayment('UPI')} className="payment-btn">
-          Pay with UPI
-        </button>
-      </div>
+      
+      <GooglePayButton
+ environment="TEST"
+  paymentRequest={{
+    apiVersion: 2,
+    apiVersionMinor: 0,
+    allowedPaymentMethods: [
+      {
+        type: 'CARD',
+        parameters: {
+          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+          allowedCardNetworks: ['MASTERCARD', 'VISA'],
+        },
+        tokenizationSpecification: {
+          type: 'PAYMENT_GATEWAY',
+          parameters: {
+            gateway: 'example',
+            gatewayMerchantId: 'exampleGatewayMerchantId',
+          },
+        },
+      },
+    
+    ],
+    transactionInfo: {
+      totalPriceStatus: 'FINAL',
+      totalPrice: ticketDetails.price.toString(),
+      currencyCode: 'INR',
+    },
+    merchantInfo: {
+      merchantName: 'Example Merchant',
+    },
+  }}
+  onLoadPaymentData={handlePayment}
+      />
+
       <div className="ticket-info">
         <h3>Your Ticket</h3>
         <p><strong>Username:</strong> {ticketDetails.username}</p>

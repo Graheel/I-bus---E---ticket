@@ -1,5 +1,5 @@
-// DriverManagement.js
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import DriverForm from "./DriverForm";
 import DriverList from "./DriverList";
 import "./styles/DriverManagement.css";
@@ -8,32 +8,45 @@ const DriverManagement = () => {
   const [drivers, setDrivers] = useState([]);
 
   useEffect(() => {
-    // Fetch drivers from backend or use dummy data
-    const dummyDrivers = [
-      {
-        id: 1,
-        name: "John Doe",
-        busAssigned: "BUS-001",
-        contact: "1234567890",
-        status: "On Time",
-      },
-      // Add more drivers as needed
-    ];
-    setDrivers(dummyDrivers);
+    const fetchDrivers = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/api/driver");
+        setDrivers(response.data);
+      } catch (error) {
+        console.error("Error fetching drivers:", error);
+      }
+    };
+    fetchDrivers();
   }, []);
 
-  const addDriver = (driver) => {
-    setDrivers([...drivers, { ...driver, id: Date.now() }]);
+  const addDriver = async (driver) => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/driver", driver);
+      setDrivers([...drivers, response.data.driver]);
+      alert("Driver added successfully!");
+    } catch (error) {
+      console.error("Error adding driver:", error);
+    }
   };
 
-  const updateDriver = (updatedDriver) => {
-    setDrivers(
-      drivers.map((driver) => (driver.id === updatedDriver.id ? updatedDriver : driver))
-    );
+  const updateDriver = async (updatedDriver) => {
+    try {
+      await axios.put(`http://localhost:5000/api/driver/${updatedDriver._id}`, updatedDriver);
+      setDrivers(drivers.map((driver) => (driver._id === updatedDriver._id ? updatedDriver : driver)));
+      alert("Driver updated successfully!");
+    } catch (error) {
+      console.error("Error updating driver:", error);
+    }
   };
 
-  const deleteDriver = (id) => {
-    setDrivers(drivers.filter((driver) => driver.id !== id));
+  const deleteDriver = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/driver/${id}`);
+      setDrivers(drivers.filter((driver) => driver._id !== id));
+      alert("Driver deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting driver:", error);
+    }
   };
 
   return (

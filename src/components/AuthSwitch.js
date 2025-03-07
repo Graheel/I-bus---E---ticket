@@ -14,7 +14,7 @@ const AuthSwitch = ({ authType, setAuthType }) => {
 
   // Callback function for successful login/register
   const handleSuccess = () => {
-    navigate("/"); // Redirect to homepage
+    navigate("/"); 
   };
 
   return (

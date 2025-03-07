@@ -1,27 +1,44 @@
-/* RevenueOverview.css */
-.revenue-overview {
-    padding: 40px 20px;
-    background: #ffffff;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .revenue-overview h2 {
-    color: #00203F;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  
-  .revenue-overview p {
-    font-size: 1.5rem;
-    color: #333;
-    text-align: center;
-  }
-  
-  .revenue-overview strong {
-    color: #00203F;
-  }
-  
+/* Total Revenue Container */
+.total-revenue {
+  padding: 40px 30px;
+  background: linear-gradient(135deg, #00203F, #ADEFD1);
+  border-radius: 12px;
+  max-width: 500px;
+  margin: 30px auto;
+  text-align: center;
+  color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.total-revenue:hover {
+  transform: scale(1.05);
+}
+
+/* Heading */
+.total-revenue h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Revenue Text */
+.total-revenue p {
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Revenue Amount */
+.total-revenue strong {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffcc00;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+}
+
+.total-revenue strong:hover {
+  transform: scale(1.1);
+}

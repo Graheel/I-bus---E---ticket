@@ -1,18 +1,94 @@
-/* BusManagement.css */
+/* Main Container for Bus Management */
 .bus-management {
-    padding: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 40px auto;
+  max-width: 900px;
+}
+
+/* Heading Styling */
+.bus-management h2 {
+  color: #00203F;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Form and List Containers */
+.bus-management .bus-form,
+.bus-management .bus-list {
+  margin-bottom: 40px; /* Adds spacing between BusForm and BusList */
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Bus List Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #00203F;
+  color: #ADEFD1;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Buttons */
+button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button.add-btn {
+  background-color: #4CAF50;
+  color: #ffffff;
+}
+
+button.edit-btn {
+  background-color: #007BFF;
+  color: #ffffff;
+}
+
+button.delete-btn {
+  background-color: #DC3545;
+  color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bus-management {
+    padding: 15px;
   }
-  
-  .bus-management h2 {
-    color: #00203F;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
+
+  table {
+    font-size: 0.9rem;
   }
-  
-  .bus-management .bus-list,
-  .bus-management .bus-form {
-    max-width: 800px;
-    margin: 0 auto;
+
+  button {
+    font-size: 0.85rem;
+    padding: 6px 10px;
   }
-  
+}

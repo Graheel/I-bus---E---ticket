@@ -1,12 +1,107 @@
-/* BusList.css */
+/* Main Container for Bus List */
+.bus-list {
+  background: #ffffff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px; /* Add space below the Bus List */
+}
+
+/* Heading */
 .bus-list h3 {
-    color: #00203F;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    text-align: center;
+  text-align: center;
+  color: #00203F;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #00203F;
+  color: #ADEFD1;
+  font-size: 1rem;
+}
+
+td {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Table Row Hover */
+tr:hover {
+  background-color: #f1f1f1; /* Highlight row on hover */
+}
+
+/* Buttons */
+button {
+  padding: 8px 12px;
+  margin: 2px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* Specific Button Styles */
+button.save-btn {
+  background-color: #4CAF50; /* Green for Save */
+  color: white;
+}
+
+button.cancel-btn {
+  background-color: #f44336; /* Red for Cancel */
+  color: white;
+}
+
+button.edit-btn {
+  background-color: #007BFF; /* Blue for Edit */
+  color: white;
+}
+
+button.delete-btn {
+  background-color: #DC3545; /* Red for Delete */
+  color: white;
+}
+
+/* Margins for Adjacent Sections */
+.bus-management {
+  margin-top: 40px; /* Ensure spacing from Bus Management */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.8rem; /* Smaller font size for mobile */
   }
-  
-  .bus-list .bus-item {
-    margin-bottom: 20px;
+
+  button {
+    padding: 6px 10px; /* Adjust button size */
+    font-size: 0.8rem;
   }
-  
+
+  th, td {
+    padding: 10px;
+  }
+}
