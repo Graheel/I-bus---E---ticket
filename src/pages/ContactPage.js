@@ -12,7 +12,7 @@ const ContactPage = () => {
     const contactData = { name, email, message };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/contact/submit', contactData);
+      const response = await axios.post('https://i-bus-e-ticket-2.onrender.com/api/contact/submit', contactData);
       if (response.status === 201) {
         alert(`Thank you, ${name}! Your message has been received.`);
         setName('');
