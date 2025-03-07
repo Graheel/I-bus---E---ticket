@@ -10,7 +10,7 @@ const DriverManagement = () => {
   useEffect(() => {
     const fetchDrivers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/driver");
+        const response = await axios.get("https://i-bus-e-ticket-2.onrender.com/api/driver");
         setDrivers(response.data);
       } catch (error) {
         console.error("Error fetching drivers:", error);
@@ -21,7 +21,7 @@ const DriverManagement = () => {
 
   const addDriver = async (driver) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/driver", driver);
+      const response = await axios.post("https://i-bus-e-ticket-2.onrender.com/api/driver", driver);
       setDrivers([...drivers, response.data.driver]);
       alert("Driver added successfully!");
     } catch (error) {
