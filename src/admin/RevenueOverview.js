@@ -7,7 +7,7 @@ const TotalRevenue = () => {
 
   const fetchTotalRevenue = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/tickets/all");
+      const response = await axios.get("https://i-bus-e-ticket-2.onrender.com/api/tickets/all");
       const total = response.data.reduce((sum, ticket) => sum + ticket.price, 0);
       setTotalRevenue(total);
     } catch (error) {
