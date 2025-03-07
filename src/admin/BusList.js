@@ -14,7 +14,7 @@ const BusList = () => {
 
   const fetchBuses = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/bus/all"); 
+      const response = await axios.get("https://i-bus-e-ticket-2.onrender.com/api/bus/all"); 
       setBuses(response.data);
     } catch (error) {
       console.error("Error fetching buses:", error);
@@ -25,7 +25,7 @@ const BusList = () => {
   const deleteBus = async (id) => {
     if (window.confirm("Are you sure you want to delete this bus?")) {
       try {
-        await axios.delete(`http://localhost:5000/api/bus/delete/${id}`);
+        await axios.delete(`https://i-bus-e-ticket-2.onrender.com/api/bus/delete/${id}`);
         setBuses(buses.filter((bus) => bus._id !== id)); 
         alert("Bus deleted successfully ✅");
       } catch (error) {
@@ -53,7 +53,7 @@ const BusList = () => {
   // Save edited bus
   const saveBus = async (id) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/bus/update/${id}`, updatedData);
+      const response = await axios.put(`https://i-bus-e-ticket-2.onrender.com/api/bus/update/${id}`, updatedData);
       setBuses(buses.map((bus) => (bus._id === id ? response.data.bus : bus))); 
       setEditingBus(null);
       alert("Bus updated successfully ✅");
