@@ -1,22 +1,28 @@
-/* Main Container for Bus List */
+/* Bus List Container */
 .bus-list {
   background: #ffffff;
-  padding: 20px 30px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px; /* Add space below the Bus List */
+  margin-bottom: 40px;
 }
 
 /* Heading */
 .bus-list h3 {
   text-align: center;
   color: #00203F;
-  margin-bottom: 20px;
   font-size: 1.8rem;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
-/* Table Styling */
+/* Table Wrapper (For Responsiveness) */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -42,7 +48,7 @@ td {
 
 /* Table Row Hover */
 tr:hover {
-  background-color: #f1f1f1; /* Highlight row on hover */
+  background-color: #f1f1f1;
 }
 
 /* Buttons */
@@ -65,43 +71,50 @@ button:active {
 }
 
 /* Specific Button Styles */
-button.save-btn {
-  background-color: #4CAF50; /* Green for Save */
+.save-btn {
+  background-color: #4CAF50; /* Green */
   color: white;
 }
 
-button.cancel-btn {
-  background-color: #f44336; /* Red for Cancel */
+.cancel-btn {
+  background-color: #f44336; /* Red */
   color: white;
 }
 
-button.edit-btn {
-  background-color: #007BFF; /* Blue for Edit */
+.edit-btn {
+  background-color: #007BFF; /* Blue */
   color: white;
 }
 
-button.delete-btn {
-  background-color: #DC3545; /* Red for Delete */
+.delete-btn {
+  background-color: #DC3545; /* Red */
   color: white;
 }
 
-/* Margins for Adjacent Sections */
-.bus-management {
-  margin-top: 40px; /* Ensure spacing from Bus Management */
+/* Flexbox for Buttons to Stack on Small Screens */
+.button-container {
+  display: flex;
+  gap: 5px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   table {
-    font-size: 0.8rem; /* Smaller font size for mobile */
-  }
-
-  button {
-    padding: 6px 10px; /* Adjust button size */
     font-size: 0.8rem;
   }
 
   th, td {
     padding: 10px;
+  }
+
+  button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Stack buttons vertically on very small screens */
+@media (max-width: 600px) {
+  .button-container {
+    flex-direction: column;
   }
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; 
-import "./styles/FeedbackResponse.css"; 
+import axios from "axios";
+import "./styles/FeedbackResponse.css";
 
 const FeedbackResponse = () => {
   const [responses, setResponses] = useState([]);
@@ -21,26 +21,40 @@ const FeedbackResponse = () => {
   return (
     <div className="feedback-responses">
       <h2>Contact Messages</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Message</th>
-            <th>Date Submitted</th> {/* Updated header */}
-          </tr>
-        </thead>
-        <tbody>
-          {responses.map((response) => (
-            <tr key={response._id}>
-              <td>{response.name}</td>
-              <td>{response.email}</td>
-              <td>{response.message}</td>
-              <td>{new Date(response.dateSubmitted).toLocaleDateString()}</td> {/* Updated field */}
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Date Submitted</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {responses.length > 0 ? (
+              responses.map((response) => (
+                <tr key={response._id}>
+                  <td>{response.name || "Not Available"}</td>
+                  <td>{response.email || "Not Available"}</td>
+                  <td>{response.message || "Not Available"}</td>
+                  <td>
+                    {response.dateSubmitted
+                      ? new Date(response.dateSubmitted).toLocaleDateString()
+                      : "Not Available"}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" style={{ textAlign: "center" }}>
+                  No messages available
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

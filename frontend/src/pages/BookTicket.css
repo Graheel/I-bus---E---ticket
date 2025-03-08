@@ -1,47 +1,52 @@
-
+/* Main Container */
 .book-ticket-container {
   font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #fff9e6, #fff0b3); 
+  background: linear-gradient(135deg, #fff9e6, #fff0b3);
   margin: 0;
   padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120vh;
+  min-height: 100vh;
 }
 
+/* Booking Form */
 .book-ticket {
-  width: 100%;
+  width: 90%; /* Responsive width */
   max-width: 600px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 20px;
-  background-color: #a8d0e6; 
+  background-color: #a8d0e6;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 .book-ticket h1 {
   text-align: center;
   color: #2c3e50;
   margin-bottom: 20px;
+  font-size: 22px;
 }
 
+/* Form Fields */
 .book-ticket .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .book-ticket .form-group label {
   display: block;
   font-weight: bold;
   color: #333;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  font-size: 16px;
 }
 
 .book-ticket .form-group input,
 .book-ticket .form-group select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -49,6 +54,7 @@
   box-sizing: border-box;
 }
 
+/* Price Details */
 .book-ticket .price-details {
   margin-top: 20px;
   text-align: center;
@@ -57,6 +63,7 @@
   font-weight: bold;
 }
 
+/* Submit Button */
 .book-ticket .btn-submit {
   display: block;
   width: 100%;
@@ -64,9 +71,9 @@
   color: #ffffff;
   font-size: 18px;
   font-weight: bold;
-  padding: 12px;
+  padding: 14px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   text-align: center;
   transition: background-color 0.3s ease;
@@ -74,4 +81,26 @@
 
 .book-ticket .btn-submit:hover {
   background-color: #34495e;
+}
+
+/* Responsive Design for Mobile (iPhone 14 Pro Max & other devices) */
+@media (max-width: 480px) {
+  .book-ticket {
+    padding: 15px;
+  }
+  .book-ticket h1 {
+    font-size: 20px;
+  }
+  .book-ticket .form-group label {
+    font-size: 14px;
+  }
+  .book-ticket .form-group input,
+  .book-ticket .form-group select {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .book-ticket .btn-submit {
+    font-size: 16px;
+    padding: 12px;
+  }
 }

@@ -1,44 +1,88 @@
 .total-booked-tickets {
-    padding: 20px;
-  }
-  
-  .total-booked-tickets h2 {
-    color: #00203F;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .total-booked-tickets table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #ffffff;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
+  padding: 20px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.total-booked-tickets h2 {
+  color: #00203F;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.total-booked-tickets table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.total-booked-tickets th,
+.total-booked-tickets td {
+  padding: 15px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.total-booked-tickets th {
+  background-color: #00203F;
+  color: #ADEFD1;
+}
+
+.total-booked-tickets tr:nth-child(even) {
+  background-color: #f7f9fc;
+}
+
+.total-booked-tickets tr:hover {
+  background-color: #dce1e7;
+}
+
+.total-booked-tickets td {
+  border-bottom: 1px solid #ccc;
+  color: #333;
+}
+
+/* Style for Total Price row */
+.total-booked-tickets tfoot {
+  background-color: white;
+  color: #ADEFD1;
+  font-weight: bold;
+}
+
+.total-booked-tickets tfoot td {
+  padding: 15px;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
   .total-booked-tickets th,
   .total-booked-tickets td {
-    padding: 15px;
-    text-align: left;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    padding: 10px;
   }
-  
-  .total-booked-tickets th {
-    background-color: #00203F;
-    color: #ADEFD1;
+}
+
+@media screen and (max-width: 768px) {
+  .total-booked-tickets h2 {
+    font-size: 1.5rem;
   }
-  
-  .total-booked-tickets tr:nth-child(even) {
-    background-color: #f7f9fc;
+
+  .total-booked-tickets table {
+    display: block;
+    overflow-x: auto;
   }
-  
-  .total-booked-tickets tr:hover {
-    background-color: #dce1e7;
-  }
-  
+
+  .total-booked-tickets th,
   .total-booked-tickets td {
-    border-bottom: 1px solid #ccc;
-    color: #333;
+    font-size: 0.85rem;
+    padding: 8px;
   }
-  
+}

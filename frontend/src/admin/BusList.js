@@ -65,55 +65,57 @@ const BusList = () => {
   return (
     <div className="bus-list">
       <h3>Bus List</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Unique Number</th>
-            <th>Nameplate Number</th>
-            <th>Route</th>
-            <th>Driver</th>
-            <th>Timings</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {buses.map((bus) => (
-            <tr key={bus._id}>
-              {editingBus === bus._id ? (
-                <>
-                  <td><input type="text" name="uniqueNumber" value={updatedData.uniqueNumber} onChange={handleEditChange} /></td>
-                  <td><input type="text" name="nameplateNumber" value={updatedData.nameplateNumber} onChange={handleEditChange} /></td>
-                  <td>
-                    <select name="route" value={updatedData.route} onChange={handleEditChange}>
-                      {Array.from({ length: 12 }, (_, i) => `ROUTE-${String.fromCharCode(65 + i)}`).map((route) => (
-                        <option key={route} value={route}>{route}</option>
-                      ))}
-                    </select>
-                  </td>
-                  <td><input type="text" name="driver" value={updatedData.driver} onChange={handleEditChange} /></td>
-                  <td>08:00 AM - 09:00 PM</td>
-                  <td>
-                    <button onClick={() => saveBus(bus._id)}>Save</button>
-                    <button onClick={() => setEditingBus(null)}>Cancel</button>
-                  </td>
-                </>
-              ) : (
-                <>
-                  <td>{bus.uniqueNumber}</td>
-                  <td>{bus.nameplateNumber}</td>
-                  <td>{bus.route}</td>
-                  <td>{bus.driver}</td>
-                  <td>{bus.timings}</td>
-                  <td>
-                    <button onClick={() => startEditing(bus)}>Edit</button>
-                    <button onClick={() => deleteBus(bus._id)}>Delete</button>
-                  </td>
-                </>
-              )}
+      <div className="table-container"> {/* Wrapping table inside scrollable container */}
+        <table>
+          <thead>
+            <tr>
+              <th>Unique Number</th>
+              <th>Nameplate Number</th>
+              <th>Route</th>
+              <th>Driver</th>
+              <th>Timings</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {buses.map((bus) => (
+              <tr key={bus._id}>
+                {editingBus === bus._id ? (
+                  <>
+                    <td><input type="text" name="uniqueNumber" value={updatedData.uniqueNumber} onChange={handleEditChange} /></td>
+                    <td><input type="text" name="nameplateNumber" value={updatedData.nameplateNumber} onChange={handleEditChange} /></td>
+                    <td>
+                      <select name="route" value={updatedData.route} onChange={handleEditChange}>
+                        {Array.from({ length: 12 }, (_, i) => `ROUTE-${String.fromCharCode(65 + i)}`).map((route) => (
+                          <option key={route} value={route}>{route}</option>
+                        ))}
+                      </select>
+                    </td>
+                    <td><input type="text" name="driver" value={updatedData.driver} onChange={handleEditChange} /></td>
+                    <td>08:00 AM - 09:00 PM</td>
+                    <td>
+                      <button className="save-btn" onClick={() => saveBus(bus._id)}>Save</button>
+                      <button className="cancel-btn" onClick={() => setEditingBus(null)}>Cancel</button>
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td>{bus.uniqueNumber}</td>
+                    <td>{bus.nameplateNumber}</td>
+                    <td>{bus.route}</td>
+                    <td>{bus.driver}</td>
+                    <td>{bus.timings}</td>
+                    <td className="button-container">
+                      <button className="edit-btn" onClick={() => startEditing(bus)}>Edit</button>
+                      <button className="delete-btn" onClick={() => deleteBus(bus._id)}>Delete</button>
+                    </td>
+                  </>
+                )}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,7 @@
 .emergency-reports {
   padding: 20px;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .emergency-reports h2 {
@@ -9,12 +11,17 @@
   text-align: center;
 }
 
+.table-container {
+  overflow-x: auto;
+}
+
 .emergency-reports table {
   width: 100%;
   border-collapse: collapse;
   background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .emergency-reports th,
@@ -40,4 +47,30 @@
 .emergency-reports td {
   border-bottom: 1px solid #ccc;
   color: #333;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .emergency-reports th, 
+  .emergency-reports td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .emergency-reports h2 {
+    font-size: 1.5rem;
+  }
+
+  .emergency-reports table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .emergency-reports th,
+  .emergency-reports td {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
 }

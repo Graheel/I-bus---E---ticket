@@ -1,64 +1,109 @@
-
+/* General Styles */
 body {
   margin: 0;
-  padding-top: 64px; 
+  padding-top: 64px;
+  overflow-x: hidden;
+  font-family: 'Arial', sans-serif;
 }
 
-/* Navbar Typography */
+/* Navbar Styling */
+.AppBar {
+  background-color: #2e7d32 !important; /* Darker green for better contrast */
+}
+
 .navbar-typography {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   color: white;
+  text-align: center;
+  flex-grow: 1;
+  letter-spacing: 1px;
 }
 
-/* Navbar Links */
+/* Navbar Buttons */
 .nav-links {
   display: flex;
   align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .nav-link {
   text-decoration: none;
-  color: inherit;
-  margin-left: 20px;
-  margin-right: 20px;
+  color: white;
 }
 
 .nav-button {
   font-weight: bold;
   font-size: 1rem;
+  transition: all 0.3s ease-in-out;
 }
 
-.nav-link:hover {
-  text-decoration: underline;
+.nav-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
 }
 
-/* Drawer Links */
+/* Active Link Styling */
+.nav-link.active .nav-button {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+}
+
+/* Drawer Styling */
 .drawer-link {
   text-decoration: none;
-  color: inherit;
+  color: #2e7d32;
+  font-weight: bold;
+  display: block;
+  padding: 10px 16px;
+  transition: background-color 0.3s ease;
 }
 
 .drawer-link:hover {
-  background-color: #f0f0f0;
+  background-color: #e8f5e9;
 }
 
-/* Drawer Styles */
+/* Drawer Paper */
 .MuiDrawer-paper {
-  width: 250px;
+  width: 270px;
+}
+
+/* Accordion Styling */
+.MuiAccordion-root {
+  box-shadow: none;
+  border: 1px solid #e0e0e0;
+}
+
+.MuiAccordionSummary-root {
+  font-weight: bold;
+}
+
+.MuiAccordionDetails-root {
+  background-color: #f9f9f9;
+  padding: 10px 16px;
+}
+
+/* Route List Styling */
+.route-list {
+  padding: 5px 16px;
+  font-size: 0.9rem;
+}
+
+.route-list li {
+  padding: 4px 0;
+  list-style-type: none;
 }
 
 /* Menu Styling */
 .menu-link {
   text-decoration: none;
-  color: inherit;
+  color: black;
+  display: block;
+  padding: 10px 16px;
+  font-weight: bold;
 }
 
 .menu-link:hover {
-  text-decoration: underline;
-}
-
-/* Icon Button Styling */
-.icon-button {
-  transform: scale(1.5);
+  background-color: #e0e0e0;
 }
