@@ -32,7 +32,7 @@ const DriverDashboard = () => {
       }
   
       try {
-        const response = await axios.get(`https://i-bus-e-ticket-1.onrender.com/api/driver/details?email=${loggedInEmail}`);
+        const response = await axios.get(`http://localhost:5000/api/driver/details?email=${loggedInEmail}`);
         if (response.data) {
           setDriver(response.data); 
         }
@@ -66,7 +66,7 @@ const DriverDashboard = () => {
   
       console.log("Sending Request Body with Actual Driver Details:", routeData);
   
-      const response = await axios.post("https://i-bus-e-ticket-1.onrender.com/api/route/start", routeData);
+      const response = await axios.post("http://localhost:5000/api/route/start", routeData);
       console.log("Route Started Successfully:", response.data);
   
       setRouteId(response.data.route._id); 
@@ -89,7 +89,7 @@ const DriverDashboard = () => {
         return;
       }
   
-      const response = await axios.post("https://i-bus-e-ticket-1.onrender.com/api/route/end", { routeId });
+      const response = await axios.post("http://localhost:5000/api/route/end", { routeId });
       console.log("Response Data:", response.data);
   
       setRouteEndTime(new Date(response.data.route.routeEndedAt));
@@ -126,7 +126,7 @@ const DriverDashboard = () => {
         },
       };
   
-      const response = await axios.post("https://i-bus-e-ticket-1.onrender.com/api/route/emergency", emergencyData);
+      const response = await axios.post("http://localhost:5000/api/route/emergency", emergencyData);
       console.log(response.data.message); 
       alert("Emergency reported successfully!");
       setEmergencyMessage(""); 

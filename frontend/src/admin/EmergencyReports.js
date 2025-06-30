@@ -9,7 +9,7 @@ const EmergencyReports = () => {
   useEffect(() => {
     const fetchEmergencyReports = async () => {
       try {
-        const response = await axios.get("https://i-bus-e-ticket-1.onrender.com/api/route/emergency-reports");
+        const response = await axios.get("http://localhost:5000/api/route/emergency-reports");
         console.log("API Response:", response.data);
 
         if (response.data) {

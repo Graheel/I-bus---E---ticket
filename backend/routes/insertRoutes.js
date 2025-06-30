@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
+const express = require("express");
 require("dotenv").config(); // Load environment variables
 const iBusRoute = require("../models/iBusRoutes");
+const router = express.Router();
+
+
+
 
 // MongoDB URI
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://graheelupadhyay:Qxpx8E50ujmnrtVp@cluster0.l4cxk.mongodb.net/ibusDB?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/ibus";
 
 // Predefined routes with ObjectId
 const predefinedRoutes = [

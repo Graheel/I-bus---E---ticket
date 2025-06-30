@@ -16,7 +16,7 @@ const DriverForm = ({ addDriver }) => {
   useEffect(() => {
     const fetchRoutes = async () => {
       try {
-        const response = await axios.get("https://i-bus-e-ticket-1.onrender.com/api/driver/driver-routes");
+        const response = await axios.get("http://localhost:5000/api/driver/driver-routes");
         setRoutes(response.data);
         setDriverData((prev) => ({
           ...prev,

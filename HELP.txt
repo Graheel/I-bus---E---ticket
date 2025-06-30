@@ -1,0 +1,72 @@
+                   Project Setup Guide
+
+ ✅ Required Software
+
+      Node.js
+      Required for running JavaScript on the server side.
+      🔗 Download: https://nodejs.org/
+
+
+    MongoDB
+     
+      A NoSQL database system for storing and managing data.
+     🔗 Download MongoDB Community Server: https://www.mongodb.com/
+
+🔧 Optional Tools
+       
+     MongoDB Compass
+     
+     A GUI for visualizing and managing MongoDB databases.
+     🔗 Download: https://www.mongodb.com/products/compass
+
+     Postman
+     
+      A tool for testing and debugging APIs.
+     🔗 Download: https://www.postman.com/
+
+🚀 Installation & Setup Steps
+
+    1. Backend Setup
+       Go to the backend directory:
+       cd backend
+
+    Install required dependencies:
+    npm install
+
+    2. Frontend Setup
+       Go to the frontend directory:
+       cd ../frontend
+
+    Install required dependencies:
+    npm install
+
+    3. Environment Configuration
+       In the backend folder, create a .env file and add the following variables:
+
+       MONGO_URI=mongodb://127.0.0.1:27017/ibus
+       JWT_SECRET=your_secret_key
+       GOOGLE_API_KEY=AIzaSyDwA7I5jHf6Z8H_A3sQTJvjKauloVCsfzU
+       GOOGLE_CLIENT_ID=470839358141-gtb2tsc1din223oul254o2aakj541s7v.apps.googleusercontent.com
+
+    4. Database Initialization
+       Start the MongoDB server locally:
+       mongod
+
+    5. Insert initial bus routes:
+       cd backend/routes
+       node insertRoutes.js
+
+    6. Running the Application
+       Start the backend server:
+       cd backend
+       npm run dev
+
+    7. Start the frontend application:
+       cd frontend
+       npm start
+
+  🌐 Access Points
+  
+      Backend: http://localhost:5000
+
+      Frontend: http://localhost:3000

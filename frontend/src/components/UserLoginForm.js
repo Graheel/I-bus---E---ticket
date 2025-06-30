@@ -11,7 +11,7 @@ const UserLoginForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("https://i-bus-e-ticket-1.onrender.com/api/auth/login", { email, password });
+            const res = await axios.post("http://localhost:5000/api/auth/login", { email, password });
             localStorage.setItem("token", res.data.token);
             alert("User logged in successfully!");
             navigate("/home");

@@ -12,7 +12,7 @@ const AdminRegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("https://i-bus-e-ticket-1.onrender.com/api/auth/register", { username, email, password, role: "admin" });
+            await axios.post("http://localhost:5000/api/auth/register", { username, email, password, role: "admin" });
             alert("Admin registered successfully!");
             navigate("/admin-dashboard");
         } catch (error) {
