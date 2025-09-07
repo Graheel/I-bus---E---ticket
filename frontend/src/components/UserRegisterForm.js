@@ -11,7 +11,7 @@ const UserRegisterForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:5000/api/auth/register", { username, email, password, role: "user" });
+            await axios.post("https://i-bus-e-ticket-1.onrender.com/api/auth/register", { username, email, password, role: "user" });
             alert("User registered successfully!");
             navigate("/home");
         } catch (error) {
