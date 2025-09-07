@@ -29,7 +29,7 @@ const BookTicket = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/tickets/book', ticketDetails);
+      const response = await axios.post('https://i-bus-e-ticket-1.onrender.com/api/tickets/book', ticketDetails);
       if (response.status === 201) {
         alert('Ticket booked successfully!');
         navigate('/payment', { state: { ticketDetails } });
