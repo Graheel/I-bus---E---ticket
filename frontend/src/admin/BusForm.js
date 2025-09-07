@@ -23,7 +23,7 @@ const BusForm = ({ addBus }) => {
     setMessage(""); 
 
     try {
-      const response = await axios.post("http://localhost:5000/api/bus/add", busData); 
+      const response = await axios.post("https://i-bus-e-ticket-1.onrender.com/api/bus/add", busData); 
       addBus(response.data);
       setMessage("Bus added successfully! ✅");
       setMessageType("success");
