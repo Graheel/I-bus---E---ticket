@@ -63,7 +63,7 @@ const PaymentPage = ({ setShowNavbar }) => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/payment/create-payment-intent', {
+      const response = await axios.post('https://i-bus-e-ticket-1.onrender.com/api/payment/create-payment-intent', {
         amount: ticketDetails.price,
       });
 
