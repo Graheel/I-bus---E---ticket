@@ -10,7 +10,7 @@ const DriverManagement = () => {
   useEffect(() => {
     const fetchDrivers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/driver");
+        const response = await axios.get("https://i-bus-e-ticket-1.onrender.com/api/driver");
         setDrivers(response.data);
       } catch (error) {
         console.error("Error fetching drivers:", error);
@@ -21,7 +21,7 @@ const DriverManagement = () => {
 
   const addDriver = async (driver) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/driver", driver);
+      const response = await axios.post("https://i-bus-e-ticket-1.onrender.com/api/driver", driver);
       setDrivers([...drivers, response.data.driver]);
       alert("Driver added successfully!");
     } catch (error) {
@@ -41,7 +41,7 @@ const DriverManagement = () => {
 
   const deleteDriver = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/driver/${id}`);
+      await axios.delete(`https://i-bus-e-ticket-1.onrender.com/api/driver/${id}`);
       setDrivers(drivers.filter((driver) => driver._id !== id));
       alert("Driver deleted successfully!");
     } catch (error) {
