@@ -1,138 +1,191 @@
-import React, { useState, useEffect, useCallback } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import GooglePayButton from '@google-pay/button-react'; 
+import GooglePayButton from '@google-pay/button-react';
 import './PaymentPage.css';
 import jsPDF from 'jspdf';
 import QRCode from 'qrcode';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 const PaymentPage = ({ setShowNavbar }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const ticketDetails = location.state?.ticketDetails; 
-  const [pdfUrl, setPdfUrl] = useState('');
 
-  console.log('Ticket Details:', ticketDetails);
+  const ticketDetails = location.state?.ticketDetails;
+
+  const [loading, setLoading] = useState(false);
+  const [paymentDone, setPaymentDone] = useState(false);
+  const [ticketId, setTicketId] = useState('');
 
   useEffect(() => {
     if (setShowNavbar) setShowNavbar(false);
-    return () => setShowNavbar && setShowNavbar(true);
+
+    return () => {
+      if (setShowNavbar) setShowNavbar(true);
+    };
   }, [setShowNavbar]);
-
-  const generatePDF = useCallback(async () => {
-    if (!ticketDetails) return;
-
-    const { username, source, destination, date, price } = ticketDetails;
-
-    const doc = new jsPDF();
-    doc.text(`Ticket Details`, 20, 20);
-    doc.text(`Username: ${username}`, 20, 30);
-    doc.text(`Source: ${source}`, 20, 40);
-    doc.text(`Destination: ${destination}`, 20, 50);
-    doc.text(`Date: ${date}`, 20, 60);
-    doc.text(`Total Price: ₹${price}`, 20, 70);
-
-    try {
-      const qrCodeData = `${username}_${source}_${destination}_${date}_${price}`;
-      const qrCodeDataUrl = await QRCode.toDataURL(qrCodeData);
-
-      doc.addImage(qrCodeDataUrl, 'PNG', 20, 80, 50, 50);
-    } catch (err) {
-      console.error('Error generating QR code:', err);
-    }
-
-    const pdfOutput = doc.output('blob');
-    const url = URL.createObjectURL(pdfOutput);
-    setPdfUrl(url);
-  }, [ticketDetails]);
 
   useEffect(() => {
     if (!ticketDetails) {
-      alert('No ticket details found! Redirecting to home...');
+      alert('No ticket details found!');
       navigate('/');
-    } else {
-      generatePDF();
     }
-  }, [ticketDetails, navigate, generatePDF]);
+  }, [ticketDetails, navigate]);
 
-  const handlePayment = async (paymentData) => {
-    if (!ticketDetails?.price) {
-      alert('Invalid ticket details. Please try again.');
+  const generateTicket = async () => {
+    if (loading || paymentDone) return;
+
+    const amount = Number(ticketDetails?.price);
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+      alert('Invalid ticket amount.');
       return;
     }
 
-    try {
-      const response = await axios.post('https://i-bus-e-ticket-1.onrender.com/api/payment/create-payment-intent', {
-        amount: ticketDetails.price,
-      });
+    setLoading(true);
 
-      if (response.status === 200) {
-        alert('Payment successful!');
-        if (pdfUrl) window.open(pdfUrl, '_blank');
-        navigate('/');
-      }
+    try {
+      const newTicketId = 'IBUS-' + Date.now().toString().slice(-8);
+
+      const ticketData = {
+        ticketId: newTicketId,
+        username: ticketDetails.username,
+        source: ticketDetails.source,
+        destination: ticketDetails.destination,
+        date: ticketDetails.date,
+        price: amount,
+        paymentStatus: 'DEMO SUCCESS'
+      };
+
+      const qrCode = await QRCode.toDataURL(
+        JSON.stringify(ticketData)
+      );
+
+      const doc = new jsPDF();
+
+      doc.setFontSize(22);
+      doc.text('iBus E-Ticket', 20, 20);
+
+      doc.setFontSize(11);
+      doc.text('DEMO TICKET - NOT VALID FOR REAL TRAVEL', 20, 30);
+
+      doc.line(20, 35, 190, 35);
+
+      doc.setFontSize(13);
+      doc.text(`Ticket ID: ${newTicketId}`, 20, 48);
+      doc.text(`Username: ${ticketDetails.username}`, 20, 60);
+      doc.text(`Source: ${ticketDetails.source}`, 20, 72);
+      doc.text(`Destination: ${ticketDetails.destination}`, 20, 84);
+      doc.text(`Date: ${ticketDetails.date}`, 20, 96);
+      doc.text(`Total Price: INR ${amount.toFixed(2)}`, 20, 108);
+      doc.text('Payment Status: DEMO SUCCESS', 20, 122);
+
+      doc.addImage(qrCode, 'PNG', 20, 135, 55, 55);
+
+      doc.save(`${newTicketId}.pdf`);
+
+      setTicketId(newTicketId);
+      setPaymentDone(true);
+
     } catch (error) {
-      console.error('Error processing payment:', error);
-      alert('There was an error processing your payment. Please try again.');
+      console.error('Ticket generation error:', error);
+      alert('Ticket generation failed. Please try again.');
+    } finally {
+      setLoading(false);
     }
+  };
+
+  const handlePayment = async (paymentData) => {
+    console.log('Google Pay test payment response:', paymentData);
+
+    // Demo only: simulate success after Google Pay returns
+    await generateTicket();
   };
 
   if (!ticketDetails) return null;
 
   return (
     <div className="payment-page">
+
       <h1>Payment Portal</h1>
+
       <h3>Total Amount: ₹{ticketDetails.price}</h3>
-      
-      <GooglePayButton
- environment="TEST"
-  paymentRequest={{
-    apiVersion: 2,
-    apiVersionMinor: 0,
-    allowedPaymentMethods: [
-      {
-        type: 'CARD',
-        parameters: {
-          allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
-          allowedCardNetworks: ['MASTERCARD', 'VISA'],
-        },
-        tokenizationSpecification: {
-          type: 'PAYMENT_GATEWAY',
-          parameters: {
-            gateway: 'example',
-            gatewayMerchantId: 'exampleGatewayMerchantId',
-          },
-        },
-      },
-    
-    ],
-    transactionInfo: {
-      totalPriceStatus: 'FINAL',
-      totalPrice: ticketDetails.price.toString(),
-      currencyCode: 'INR',
-    },
-    merchantInfo: {
-      merchantName: 'Example Merchant',
-    },
-  }}
-  onLoadPaymentData={handlePayment}
-      />
 
       <div className="ticket-info">
-        <h3>Your Ticket</h3>
+        <h3>Journey Details</h3>
+
         <p><strong>Username:</strong> {ticketDetails.username}</p>
         <p><strong>Source:</strong> {ticketDetails.source}</p>
         <p><strong>Destination:</strong> {ticketDetails.destination}</p>
         <p><strong>Date:</strong> {ticketDetails.date}</p>
         <p><strong>Total Price:</strong> ₹{ticketDetails.price}</p>
       </div>
+
+      {!paymentDone ? (
+        <div className="google-pay-section">
+
+          <h3>Pay Using Google Pay</h3>
+
+          <GooglePayButton
+            environment="TEST"
+            paymentRequest={{
+              apiVersion: 2,
+              apiVersionMinor: 0,
+              allowedPaymentMethods: [
+                {
+                  type: 'CARD',
+                  parameters: {
+                    allowedAuthMethods: [
+                      'PAN_ONLY',
+                      'CRYPTOGRAM_3DS'
+                    ],
+                    allowedCardNetworks: [
+                      'MASTERCARD',
+                      'VISA'
+                    ]
+                  },
+                  tokenizationSpecification: {
+                    type: 'PAYMENT_GATEWAY',
+                    parameters: {
+                      gateway: 'example',
+                      gatewayMerchantId: 'exampleGatewayMerchantId'
+                    }
+                  }
+                }
+              ],
+              transactionInfo: {
+                totalPriceStatus: 'FINAL',
+                totalPrice: Number(ticketDetails.price).toFixed(2),
+                currencyCode: 'INR'
+              },
+              merchantInfo: {
+                merchantName: 'iBus E-Ticket'
+              }
+            }}
+            onLoadPaymentData={handlePayment}
+          />
+
+          {loading && <p>Generating your ticket...</p>}
+
+        </div>
+      ) : (
+        <div className="payment-success">
+          <h2>Demo Payment Successful!</h2>
+          <p>Your ticket PDF has been downloaded.</p>
+          <p><strong>Ticket ID:</strong> {ticketId}</p>
+
+          <button onClick={() => navigate('/')}>
+            Go to Home
+          </button>
+        </div>
+      )}
+
     </div>
   );
 };
 
 PaymentPage.propTypes = {
-  setShowNavbar: PropTypes.func.isRequired,
+  setShowNavbar: PropTypes.func
 };
 
 export default PaymentPage;
